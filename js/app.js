@@ -7,47 +7,54 @@ const photos = [
   {
     id: 1,
     src: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&h=600&fit=crop',
-    title: 'Agnus Tivetti Beach Club',
-    description: 'Beautiful beachside dining experience',
+    title: 'Agnus',
+    description: 'Delicious meals together',
     row: 1
   },
   {
     id: 2,
+    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop',
+    title: 'Tivetti Beach Club',
+    description: 'Beautiful beachside dining experience',
+    row: 1
+  },
+  {
+    id: 3,
     src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
     title: 'Riff Hikkaduwa',
     description: 'Amazing food and atmosphere',
     row: 1
   },
   {
-    id: 3,
+    id: 4,
     src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop',
     title: 'Barisat Galle Fort',
     description: 'Historic fort dining',
     row: 1
   },
   {
-    id: 4,
+    id: 5,
     src: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop',
     title: 'Cape Weligama',
     description: 'Luxury dining with ocean views',
     row: 1
   },
   {
-    id: 5,
+    id: 6,
     src: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=600&fit=crop',
     title: 'Celestial Galle Fort',
     description: 'Charming fort restaurant',
     row: 1
   },
   {
-    id: 6,
+    id: 7,
     src: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&h=600&fit=crop',
     title: 'Crystal Sand',
     description: 'Beachside relaxation',
     row: 1
   },
   {
-    id: 7,
+    id: 8,
     src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
     title: 'Radisson Collection',
     description: 'Upscale dining experience',
@@ -55,21 +62,21 @@ const photos = [
   },
   // Row 2: Places We Went
   {
-    id: 8,
+    id: 9,
     src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
     title: 'Mountain Views',
     description: 'Exploring new places',
     row: 2
   },
   {
-    id: 9,
+    id: 10,
     src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
     title: 'Sunset Walk',
     description: 'Beautiful evening stroll',
     row: 2
   },
   {
-    id: 10,
+    id: 11,
     src: 'https://images.unsplash.com/photo-1533093818119-ac1fa47a6653?w=800&h=600&fit=crop',
     title: 'City Adventure',
     description: 'Discovering the city',
@@ -77,21 +84,21 @@ const photos = [
   },
   // Row 3: Shopping Places We Went
   {
-    id: 11,
+    id: 12,
     src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
     title: 'Shopping Spree',
     description: 'Finding treasures together',
     row: 3
   },
   {
-    id: 12,
+    id: 13,
     src: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=600&fit=crop',
     title: 'Market Day',
     description: 'Browsing through shops',
     row: 3
   },
   {
-    id: 13,
+    id: 14,
     src: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=800&h=600&fit=crop',
     title: 'Mall Adventure',
     description: 'Shopping and fun',
@@ -99,29 +106,29 @@ const photos = [
   },
   // Row 4: Future Date Ideas
   {
-    id: 14,
-    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop',
+    id: 15,
+    src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop',
     title: 'Beach Date',
     description: 'Walking on the sand, watching the waves together',
     row: 4
   },
   {
-    id: 15,
-    src: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&h=600&fit=crop',
+    id: 16,
+    src: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&h=600&fit=crop',
     title: 'Pottery Date',
     description: 'Creating something beautiful together',
     row: 4
   },
   {
-    id: 16,
-    src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop',
+    id: 17,
+    src: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&h=600&fit=crop',
     title: 'Travelling at Night',
     description: 'Late night adventures under the stars',
     row: 4
   },
   {
-    id: 17,
-    src: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800&h=600&fit=crop',
+    id: 18,
+    src: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop',
     title: 'Swimming',
     description: 'Making a splash together',
     row: 4
@@ -310,6 +317,40 @@ function initializeBrowseScreen() {
     showScreen('profile-screen');
   });
 
+  // Play button - Show girlfriend proposal
+  const playBtn = document.querySelector('.btn-play');
+  const proposalModal = document.getElementById('proposal-modal');
+  const proposalLoading = document.getElementById('proposal-loading');
+  const proposalMessage = document.getElementById('proposal-message');
+  const closeProposalBtn = document.getElementById('close-proposal');
+
+  playBtn.addEventListener('click', () => {
+    // Show modal with loading
+    proposalModal.classList.add('active');
+    proposalLoading.classList.remove('hidden');
+    proposalMessage.classList.remove('active');
+
+    // After 2 seconds, show the proposal message
+    setTimeout(() => {
+      proposalLoading.classList.add('hidden');
+      proposalMessage.classList.add('active');
+    }, 2000);
+  });
+
+  closeProposalBtn.addEventListener('click', () => {
+    proposalModal.classList.remove('active');
+    proposalLoading.classList.remove('hidden');
+    proposalMessage.classList.remove('active');
+  });
+
+  proposalModal.addEventListener('click', (e) => {
+    if (e.target === proposalModal) {
+      proposalModal.classList.remove('active');
+      proposalLoading.classList.remove('hidden');
+      proposalMessage.classList.remove('active');
+    }
+  });
+
   // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -320,7 +361,7 @@ function initializeBrowseScreen() {
     }
   });
 
-  // Modal functionality
+  // Photo Modal functionality
   const modal = document.getElementById('photo-modal');
   const modalClose = document.querySelector('.modal-close');
 
