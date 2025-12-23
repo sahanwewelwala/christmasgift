@@ -1,247 +1,661 @@
-/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
-
-/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
+/* Netflix Style Variables */
+:root {
+  --netflix-red: #E50914;
+  --netflix-black: #141414;
+  --netflix-dark-gray: #181818;
+  --netflix-gray: #2f2f2f;
+  --netflix-light-gray: #808080;
+  --netflix-white: #ffffff;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--netflix-black);
+  color: var(--netflix-white);
+  overflow-x: hidden;
 }
 
-/*
- * A better looking default horizontal rule
- */
+/* Screen Management */
+.screen {
+  display: none;
+  min-height: 100vh;
+}
 
-hr {
+.screen.active {
   display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
-  display: none !important;
-}
-
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
+/* Netflix Logo Styles */
+.netflix-logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
   position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
+.logo {
+  width: 160px;
   height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
+  fill: var(--netflix-red);
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
+.logo-small {
+  width: 100px;
+  height: auto;
+  fill: var(--netflix-red);
 }
 
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+/* Profile Selection Screen */
+#profile-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--netflix-black);
 }
 
-.clearfix::after {
-  clear: both;
+.profiles-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+.profiles-title {
+  font-size: 3.5vw;
+  font-weight: 400;
+  color: var(--netflix-white);
+  margin-bottom: 50px;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+.profile-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
+.profile-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
+  max-width: 200px;
+}
 
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
+.profile-card:hover {
+  transform: scale(1.1);
+}
+
+.profile-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+  margin: 0 auto;
+}
+
+.profile-card:hover .profile-avatar {
+  border-color: var(--netflix-white);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  display: block;
+  margin-top: 15px;
+  font-size: 1.3vw;
+  color: var(--netflix-light-gray);
+  transition: color 0.3s ease;
+}
+
+.profile-card:hover .profile-name {
+  color: var(--netflix-white);
+}
+
+/* PIN Entry Screen */
+#pin-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--netflix-black);
+}
+
+.pin-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.pin-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 auto 20px;
+}
+
+.pin-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pin-profile-name {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: var(--netflix-white);
+}
+
+.pin-input-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.pin-input {
+  width: 60px;
+  height: 80px;
+  font-size: 32px;
+  text-align: center;
+  background-color: var(--netflix-gray);
+  border: 2px solid var(--netflix-light-gray);
+  border-radius: 8px;
+  color: var(--netflix-white);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.pin-input:focus {
+  border-color: var(--netflix-white);
+}
+
+.pin-error {
+  color: var(--netflix-red);
+  font-size: 14px;
+  min-height: 20px;
+  margin-bottom: 20px;
+}
+
+.pin-back-btn {
+  background: transparent;
+  border: 1px solid var(--netflix-light-gray);
+  color: var(--netflix-light-gray);
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pin-back-btn:hover {
+  color: var(--netflix-white);
+  border-color: var(--netflix-white);
+}
+
+/* Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 50px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: var(--netflix-black);
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  margin-left: 40px;
+  flex: 1;
+}
+
+.nav-link {
+  color: var(--netflix-white);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--netflix-light-gray);
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--netflix-light-gray);
+  color: var(--netflix-light-gray);
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: var(--netflix-white);
+  border-color: var(--netflix-white);
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
+              url('https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=1920&h=1080&fit=crop') center/cover;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  margin-bottom: 20px;
+}
+
+.hero-content {
+  max-width: 600px;
+  z-index: 2;
+  margin-top: 100px;
+}
+
+.hero-title {
+  font-size: 4vw;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-description {
+  font-size: 1.4vw;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 32px;
+  font-size: 1.2vw;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-play {
+  background-color: var(--netflix-white);
+  color: var(--netflix-black);
+}
+
+.btn-play:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-info {
+  background-color: rgba(109, 109, 110, 0.7);
+  color: var(--netflix-white);
+}
+
+.btn-info:hover {
+  background-color: rgba(109, 109, 110, 0.4);
+}
+
+.hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, var(--netflix-black), transparent);
+}
+
+/* Content Sections */
+.content-sections {
+  padding: 0 50px 100px;
+}
+
+.content-row {
+  margin-bottom: 50px;
+}
+
+.row-title {
+  font-size: 1.4vw;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--netflix-white);
+}
+
+.row-posters {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+}
+
+.row-posters::-webkit-scrollbar {
+  height: 8px;
+}
+
+.row-posters::-webkit-scrollbar-track {
+  background: var(--netflix-dark-gray);
+}
+
+.row-posters::-webkit-scrollbar-thumb {
+  background: var(--netflix-gray);
+  border-radius: 4px;
+}
+
+.row-posters::-webkit-scrollbar-thumb:hover {
+  background: var(--netflix-light-gray);
+}
+
+.poster {
+  min-width: 250px;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.poster:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.poster:hover .poster-overlay {
+  opacity: 1;
+}
+
+.poster-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--netflix-white);
+}
+
+/* Photo Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
   }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: var(--netflix-white);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--netflix-red);
+}
+
+#modal-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+
+.modal-info {
+  background-color: var(--netflix-dark-gray);
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+}
+
+#modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#modal-description {
+  font-size: 16px;
+  color: var(--netflix-light-gray);
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .profiles-title {
+    font-size: 6vw;
+    margin-bottom: 30px;
+  }
+
+  .profile-list {
+    gap: 20px;
+  }
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-name {
+    font-size: 4vw;
+    margin-top: 10px;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 15px;
+    margin-left: 20px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .hero-section {
+    height: 60vh;
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 7vw;
+  }
+
+  .hero-description {
+    font-size: 3.5vw;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    font-size: 3vw;
+  }
+
+  .content-sections {
+    padding: 0 20px 50px;
+  }
+
+  .row-title {
+    font-size: 4vw;
+  }
+
+  .poster {
+    min-width: 150px;
+    height: 85px;
+  }
+
+  .pin-input {
+    width: 50px;
+    height: 70px;
+    font-size: 28px;
+  }
+
+  .pin-input-container {
+    gap: 10px;
+  }
+
+  .pin-profile-name {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profiles-title {
+    font-size: 8vw;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .logo-small {
+    width: 70px;
+  }
+
+  .hero-title {
+    font-size: 9vw;
+  }
+
+  .hero-description {
+    font-size: 4vw;
+  }
+
+  .btn {
+    font-size: 4vw;
+    padding: 6px 16px;
+  }
+
+  .row-title {
+    font-size: 5vw;
+  }
+
+  .poster {
+    min-width: 120px;
+    height: 68px;
+  }
+
+  .pin-input {
+    width: 45px;
+    height: 60px;
+    font-size: 24px;
+  }
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.screen.active {
+  animation: fadeIn 0.5s ease;
+}
