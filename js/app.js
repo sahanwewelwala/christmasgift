@@ -317,37 +317,68 @@ function initializeBrowseScreen() {
     showScreen('profile-screen');
   });
 
-  // Play button - Show girlfriend proposal
+  // Play button - Show girlfriend proposal with Netflix intro
   const playBtn = document.querySelector('.btn-play');
   const proposalModal = document.getElementById('proposal-modal');
+  const proposalIntro = document.getElementById('proposal-intro');
   const proposalLoading = document.getElementById('proposal-loading');
   const proposalMessage = document.getElementById('proposal-message');
   const closeProposalBtn = document.getElementById('close-proposal');
 
   playBtn.addEventListener('click', () => {
-    // Show modal with loading
+    // Show modal with Netflix N intro
     proposalModal.classList.add('active');
-    proposalLoading.classList.remove('hidden');
+    proposalIntro.style.display = 'flex';
+    proposalLoading.classList.remove('active');
     proposalMessage.classList.remove('active');
 
-    // After 2 seconds, show the proposal message
+    // After 3 seconds (N animation), show loading
     setTimeout(() => {
-      proposalLoading.classList.add('hidden');
+      proposalIntro.style.display = 'none';
+      proposalLoading.classList.add('active');
+    }, 3000);
+
+    // After 5 seconds total, show the proposal message
+    setTimeout(() => {
+      proposalLoading.classList.remove('active');
       proposalMessage.classList.add('active');
-    }, 2000);
+    }, 5000);
   });
 
   closeProposalBtn.addEventListener('click', () => {
     proposalModal.classList.remove('active');
-    proposalLoading.classList.remove('hidden');
-    proposalMessage.classList.remove('active');
+    resetProposal();
   });
 
   proposalModal.addEventListener('click', (e) => {
     if (e.target === proposalModal) {
       proposalModal.classList.remove('active');
-      proposalLoading.classList.remove('hidden');
-      proposalMessage.classList.remove('active');
+      resetProposal();
+    }
+  });
+
+  function resetProposal() {
+    proposalIntro.style.display = 'flex';
+    proposalLoading.classList.remove('active');
+    proposalMessage.classList.remove('active');
+  }
+
+  // More Info button - Show Netflix-style info page
+  const infoBtn = document.querySelector('.btn-info');
+  const infoModal = document.getElementById('info-modal');
+  const infoCloseBtn = document.getElementById('info-close');
+
+  infoBtn.addEventListener('click', () => {
+    infoModal.classList.add('active');
+  });
+
+  infoCloseBtn.addEventListener('click', () => {
+    infoModal.classList.remove('active');
+  });
+
+  infoModal.addEventListener('click', (e) => {
+    if (e.target === infoModal) {
+      infoModal.classList.remove('active');
     }
   });
 
