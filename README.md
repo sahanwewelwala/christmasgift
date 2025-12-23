@@ -65,12 +65,12 @@ You can also use URLs from image hosting services:
 
 ### Row Organization
 
-- **row: 1** - "Our Favorite Moments"
-- **row: 2** - "Adventures Together"
-- **row: 3** - "Special Occasions"
-- **row: 4** - "Just Us"
+- **row: 1** - "Cafes We Went"
+- **row: 2** - "Places We Went"
+- **row: 3** - "Shopping Places We Went"
+- **row: 4** - "Future Date Ideas" (Beach Date, Pottery Date, Travelling at Night, Swimming)
 
-You can change these row titles in `index.html` (lines 114, 121, 128, 135).
+You can change these row titles in `index.html` (lines 126, 133, 140, 147).
 
 ## 🎨 Customization
 

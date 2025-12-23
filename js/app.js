@@ -3,60 +3,99 @@
 
 // Sample photos - replace these with your actual photos
 const photos = [
+  // Row 1: Cafes We Went
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop',
-    title: 'Beautiful Sunset',
-    description: 'A magical evening together',
-    row: 1
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=600&fit=crop',
-    title: 'Coffee Date',
+    src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop',
+    title: 'Cozy Cafe',
     description: 'Our favorite coffee spot',
     row: 1
   },
   {
+    id: 2,
+    src: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=600&fit=crop',
+    title: 'Coffee Date',
+    description: 'Laughing over lattes',
+    row: 1
+  },
+  {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1533093818119-ac1fa47a6653?w=800&h=600&fit=crop',
-    title: 'Adventure Time',
+    src: 'https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=800&h=600&fit=crop',
+    title: 'Breakfast Together',
+    description: 'Morning coffee moments',
+    row: 1
+  },
+  // Row 2: Places We Went
+  {
+    id: 4,
+    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+    title: 'Mountain Views',
     description: 'Exploring new places',
     row: 2
   },
   {
-    id: 4,
-    src: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&h=600&fit=crop',
-    title: 'Happy Moments',
-    description: 'Making memories',
+    id: 5,
+    src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
+    title: 'Sunset Walk',
+    description: 'Beautiful evening stroll',
     row: 2
   },
   {
-    id: 5,
-    src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop',
-    title: 'Special Day',
-    description: 'Celebrating together',
-    row: 3
-  },
-  {
     id: 6,
-    src: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?w=800&h=600&fit=crop',
-    title: 'Peaceful Evening',
-    description: 'Just the two of us',
-    row: 3
+    src: 'https://images.unsplash.com/photo-1533093818119-ac1fa47a6653?w=800&h=600&fit=crop',
+    title: 'City Adventure',
+    description: 'Discovering the city',
+    row: 2
   },
+  // Row 3: Shopping Places We Went
   {
     id: 7,
-    src: 'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=800&h=600&fit=crop',
-    title: 'Love',
-    description: 'Forever and always',
-    row: 4
+    src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+    title: 'Shopping Spree',
+    description: 'Finding treasures together',
+    row: 3
   },
   {
     id: 8,
-    src: 'https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=800&h=600&fit=crop',
-    title: 'Together',
-    description: 'Our journey',
+    src: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=600&fit=crop',
+    title: 'Market Day',
+    description: 'Browsing through shops',
+    row: 3
+  },
+  {
+    id: 9,
+    src: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=800&h=600&fit=crop',
+    title: 'Mall Adventure',
+    description: 'Shopping and fun',
+    row: 3
+  },
+  // Row 4: Future Date Ideas
+  {
+    id: 10,
+    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop',
+    title: 'Beach Date',
+    description: 'Walking on the sand, watching the waves together',
+    row: 4
+  },
+  {
+    id: 11,
+    src: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&h=600&fit=crop',
+    title: 'Pottery Date',
+    description: 'Creating something beautiful together',
+    row: 4
+  },
+  {
+    id: 12,
+    src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&h=600&fit=crop',
+    title: 'Travelling at Night',
+    description: 'Late night adventures under the stars',
+    row: 4
+  },
+  {
+    id: 13,
+    src: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800&h=600&fit=crop',
+    title: 'Swimming',
+    description: 'Making a splash together',
     row: 4
   }
 ];
