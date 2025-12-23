@@ -173,8 +173,43 @@ function validatePin() {
   if (currentPinAttempt === currentProfile.pin) {
     errorMsg.textContent = '';
     currentPinAttempt = '';
-    loadBrowseScreen();
-    showScreen('browse-screen');
+
+    // Show loading screen with Netflix animation
+    showScreen('loading-screen');
+
+    // Simulate loading time (like real Netflix)
+    setTimeout(() => {
+      loadBrowseScreen();
+
+      // Fade out loading screen
+      const loadingScreen = document.getElementById('loading-screen');
+      loadingScreen.classList.add('fade-out');
+
+      // Wait for fade-out before showing browse screen
+      setTimeout(() => {
+        loadingScreen.classList.remove('fade-out');
+
+        // Add entrance animation class
+        const browseScreen = document.getElementById('browse-screen');
+        browseScreen.classList.add('entering');
+
+        showScreen('browse-screen');
+
+        // Add hero animation
+        setTimeout(() => {
+          const heroSection = document.querySelector('.hero-section');
+          if (heroSection) {
+            heroSection.classList.add('animate-in');
+          }
+        }, 100);
+
+        // Remove entrance class after animation
+        setTimeout(() => {
+          browseScreen.classList.remove('entering');
+        }, 800);
+      }, 500); // Wait for fade-out animation
+    }, 2000); // 2 second loading animation
+
   } else {
     errorMsg.textContent = 'Incorrect PIN. Please try again.';
     currentPinAttempt = '';
@@ -319,4 +354,4 @@ document.head.appendChild(style);
 // Console message
 console.log('%cNetflix-Style Website', 'color: #E50914; font-size: 24px; font-weight: bold;');
 console.log('%cMade with d for Chamudi', 'color: #fff; font-size: 16px;');
-console.log('\n=Ì Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
+console.log('\n=ï¿½ Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
