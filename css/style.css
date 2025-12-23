@@ -798,6 +798,120 @@ body.browse-active {
   }
 }
 
+/* Proposal Modal */
+.proposal-content {
+  position: relative;
+  background-color: var(--netflix-black);
+  padding: 60px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 600px;
+  animation: modalFadeIn 0.5s ease;
+}
+
+.proposal-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.proposal-loading.hidden {
+  display: none;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: var(--netflix-white);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.proposal-message {
+  display: none;
+  animation: fadeInScale 0.8s ease forwards;
+}
+
+.proposal-message.active {
+  display: block;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.proposal-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--netflix-white);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.proposal-subtitle {
+  font-size: 72px;
+  margin-bottom: 30px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+.btn-close-proposal {
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-proposal:hover {
+  background-color: #b00710;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .proposal-content {
+    padding: 40px 20px;
+  }
+
+  .proposal-title {
+    font-size: 32px;
+  }
+
+  .proposal-subtitle {
+    font-size: 48px;
+  }
+}
+
 /* Loading Animation */
 @keyframes fadeIn {
   from {
