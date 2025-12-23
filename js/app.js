@@ -6,56 +6,67 @@ const photos = [
   // Row 1: Cafes We Went
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&h=600&fit=crop',
+    src: 'img/agnus.png',
     title: 'Agnus',
-    description: 'Delicious meals together',
+    description: '🍽️ Tonight at Agnus\n' +
+      '\n' +
+      '2025 • Romance / Drama • 1h 45m\n' +
+      '\n' +
+      'As night falls over Unawatuna, a quiet table becomes the center of an intimate story. Soft candlelight, low conversations, and the distant rhythm of the sea set the tone for an evening that unfolds slowly and deliberately.\n' +
+      '\n' +
+      'Each course arrives like a carefully written scene—bold flavors, refined details, and moments of pause that invite connection. Between shared glances and unspoken understanding, the outside world fades, leaving only the warmth of the setting and the closeness of the moment.\n' +
+      '\n' +
+      'This is a story about presence, about savoring time, and about how a simple dinner can turn into something unforgettable.\n' +
+      '\n' +
+      'Starring: Good food, good company, and the night itself\n' +
+      'Watch if you like: Slow-burn romances, atmospheric storytelling, and evenings that linger long after they end',
     row: 1
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop',
-    title: 'Tivetti Beach Club',
+    src: 'img/tavetti.png',
+    title: 'Taavetti Beach Club',
     description: 'Beautiful beachside dining experience',
     row: 1
   },
   {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
+    src: 'img/RiffHikkaduwa.png',
     title: 'Riff Hikkaduwa',
     description: 'Amazing food and atmosphere',
     row: 1
   },
   {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop',
+    src: 'img/barista.png',
     title: 'Barisat Galle Fort',
     description: 'Historic fort dining',
     row: 1
   },
   {
     id: 5,
-    src: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop',
+    src: 'img/capeweligama.png',
     title: 'Cape Weligama',
     description: 'Luxury dining with ocean views',
     row: 1
   },
   {
     id: 6,
-    src: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=600&fit=crop',
+    src: 'img/cellestial.png',
     title: 'Celestial Galle Fort',
     description: 'Charming fort restaurant',
     row: 1
   },
   {
     id: 7,
-    src: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&h=600&fit=crop',
+    src: 'img/crytsalsand.png',
     title: 'Crystal Sand',
     description: 'Beachside relaxation',
     row: 1
   },
   {
     id: 8,
-    src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop',
+    src: 'img/raddissoncollection.png',
     title: 'Radisson Collection',
     description: 'Upscale dining experience',
     row: 1
@@ -63,72 +74,66 @@ const photos = [
   // Row 2: Places We Went
   {
     id: 9,
-    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
-    title: 'Mountain Views',
+    src: 'img/galle.png',
+    title: 'Galle',
     description: 'Exploring new places',
     row: 2
   },
   {
     id: 10,
-    src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
-    title: 'Sunset Walk',
+    src: 'img/colombo.png',
+    title: 'Colombo',
     description: 'Beautiful evening stroll',
     row: 2
   },
   {
     id: 11,
-    src: 'https://images.unsplash.com/photo-1533093818119-ac1fa47a6653?w=800&h=600&fit=crop',
-    title: 'City Adventure',
+    src: 'img/awarekaaley.png',
+    title: 'Awareka aley',
     description: 'Discovering the city',
     row: 2
   },
   // Row 3: Shopping Places We Went
   {
     id: 12,
-    src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-    title: 'Shopping Spree',
+    src: 'img/carnage.png',
+    title: 'Carnage OGF',
     description: 'Finding treasures together',
     row: 3
   },
   {
     id: 13,
-    src: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&h=600&fit=crop',
+    src: 'img/Onegalleface.png',
     title: 'Market Day',
     description: 'Browsing through shops',
     row: 3
   },
-  {
-    id: 14,
-    src: 'https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=800&h=600&fit=crop',
-    title: 'Mall Adventure',
-    description: 'Shopping and fun',
-    row: 3
-  },
+
   // Row 4: Future Date Ideas
   {
     id: 15,
-    src: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop',
+    src: 'img/beachdate.png',
     title: 'Beach Date',
     description: 'Walking on the sand, watching the waves together',
     row: 4
   },
   {
     id: 16,
-    src: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&h=600&fit=crop',
+    src: 'img/potterydate.png',
     title: 'Pottery Date',
     description: 'Creating something beautiful together',
     row: 4
   },
   {
     id: 17,
-    src: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&h=600&fit=crop',
+    src: 'img/Travellingnight.png',
     title: 'Travelling at Night',
     description: 'Late night adventures under the stars',
     row: 4
   },
   {
     id: 18,
-    src: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&h=600&fit=crop',
+    src: 'img/swimming.png',
     title: 'Swimming',
     description: 'Making a splash together',
     row: 4
