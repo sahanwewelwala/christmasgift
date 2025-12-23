@@ -338,6 +338,13 @@ function showScreen(screenId) {
   });
 
   document.getElementById(screenId).classList.add('active');
+
+  // Manage body scrolling
+  if (screenId === 'browse-screen') {
+    document.body.classList.add('browse-active');
+  } else {
+    document.body.classList.remove('browse-active');
+  }
 }
 
 // Add shake animation for wrong PIN
