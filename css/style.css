@@ -552,7 +552,7 @@ body.browse-active {
 /* ============================= */
 
 .content-sections {
-  padding: 5vh 50px 50px;
+  padding: 15vh 50px 50px;
   position: relative;
   overflow: visible;
 }
@@ -565,7 +565,7 @@ body.browse-active {
   filter: none !important;
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
-  margin-bottom: -200px;
+  margin-bottom: -240px;
 }
 
 /* Row animation delays */
@@ -595,7 +595,7 @@ body.browse-active {
 .row-title {
   font-size: 1.4vw;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 60px;
 }
 
 .row-posters {
