@@ -496,19 +496,26 @@ function createPosterElement(photo) {
   const poster = document.createElement('div');
   poster.className = 'poster';
 
+  // Image container wrapper
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'poster-image-container';
+
   const img = document.createElement('img');
   img.src = photo.src;
   img.alt = photo.title;
   img.loading = 'lazy';
 
-  // Add maturity badge if first few photos
+  // Add NEW badge if first few photos
   if (photo.id <= 3) {
     const badge = document.createElement('div');
     badge.className = 'poster-badge';
     badge.textContent = 'NEW';
-    poster.appendChild(badge);
+    imageContainer.appendChild(badge);
   }
 
+  imageContainer.appendChild(img);
+
+  // Old overlay (for non-hover state)
   const overlay = document.createElement('div');
   overlay.className = 'poster-overlay';
 
@@ -516,7 +523,6 @@ function createPosterElement(photo) {
   title.className = 'poster-title';
   title.textContent = photo.title;
 
-  // Add metadata
   const metadata = document.createElement('div');
   metadata.className = 'poster-metadata';
 
@@ -536,7 +542,6 @@ function createPosterElement(photo) {
   metadata.appendChild(year);
   metadata.appendChild(duration);
 
-  // Add genre tags
   const tags = document.createElement('div');
   tags.className = 'poster-tags';
   const tagText = photo.tags ? photo.tags.split('•')[0].trim() : 'Romantic';
@@ -546,8 +551,91 @@ function createPosterElement(photo) {
   overlay.appendChild(metadata);
   overlay.appendChild(tags);
 
-  poster.appendChild(img);
-  poster.appendChild(overlay);
+  imageContainer.appendChild(overlay);
+
+  // NEW: Netflix hover card
+  const hoverCard = document.createElement('div');
+  hoverCard.className = 'poster-hover-card';
+
+  // Action buttons row
+  const actions = document.createElement('div');
+  actions.className = 'poster-actions';
+
+  // Play button (white)
+  const playBtn = document.createElement('button');
+  playBtn.className = 'poster-action-btn play-btn';
+  playBtn.innerHTML = '▶';
+  playBtn.title = 'Play';
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openPhotoModal(photo);
+  });
+
+  // Add to list button
+  const addBtn = document.createElement('button');
+  addBtn.className = 'poster-action-btn';
+  addBtn.innerHTML = '+';
+  addBtn.title = 'Add to My List';
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  // Like button
+  const likeBtn = document.createElement('button');
+  likeBtn.className = 'poster-action-btn';
+  likeBtn.innerHTML = '👍';
+  likeBtn.title = 'Like';
+  likeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+
+  // More info dropdown button
+  const dropdownBtn = document.createElement('button');
+  dropdownBtn.className = 'poster-action-btn';
+  dropdownBtn.innerHTML = '▼';
+  dropdownBtn.title = 'More Info';
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openPhotoModal(photo);
+  });
+
+  actions.appendChild(playBtn);
+  actions.appendChild(addBtn);
+  actions.appendChild(likeBtn);
+  actions.appendChild(dropdownBtn);
+
+  // Hover metadata (maturity, duration, quality)
+  const hoverMetadata = document.createElement('div');
+  hoverMetadata.className = 'poster-hover-metadata';
+
+  const maturityBadge = document.createElement('span');
+  maturityBadge.className = 'poster-maturity';
+  maturityBadge.textContent = '18+';
+
+  const durationSpan = document.createElement('span');
+  durationSpan.textContent = photo.id <= 8 ? '1 Memory' : photo.id <= 13 ? '1 Place' : '1 Adventure';
+
+  const qualityBadge = document.createElement('span');
+  qualityBadge.className = 'poster-quality';
+  qualityBadge.textContent = 'HD';
+
+  hoverMetadata.appendChild(maturityBadge);
+  hoverMetadata.appendChild(durationSpan);
+  hoverMetadata.appendChild(qualityBadge);
+
+  // Hover genre tags
+  const hoverTags = document.createElement('div');
+  hoverTags.className = 'poster-hover-tags';
+  hoverTags.textContent = photo.tags || 'Romantic • Memorable • Beautiful';
+
+  hoverCard.appendChild(actions);
+  hoverCard.appendChild(hoverMetadata);
+  hoverCard.appendChild(hoverTags);
+
+  imageContainer.appendChild(hoverCard);
+
+  // Assemble poster
+  poster.appendChild(imageContainer);
 
   // Click to open modal
   poster.addEventListener('click', () => {
@@ -607,3 +695,54 @@ document.head.appendChild(style);
 console.log('%cNetflix-Style Website', 'color: #E50914; font-size: 24px; font-weight: bold;');
 console.log('%cMade with d for Chamudi', 'color: #fff; font-size: 16px;');
 console.log('\n=� Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
+
+// Christmas Music Control
+document.addEventListener('DOMContentLoaded', () => {
+  const musicToggle = document.getElementById('music-toggle');
+  const christmasMusic = document.getElementById('christmas-music');
+  const playingIcon = document.querySelector('.music-playing');
+  const mutedIcon = document.querySelector('.music-muted');
+  let isPlaying = false;
+
+  if (musicToggle && christmasMusic) {
+    // Set initial volume
+    christmasMusic.volume = 0.3;
+
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        christmasMusic.pause();
+        musicToggle.classList.remove('playing');
+        playingIcon.style.display = 'none';
+        mutedIcon.style.display = 'block';
+      } else {
+        christmasMusic.play().catch(err => {
+          console.log('Music autoplay prevented by browser:', err);
+        });
+        musicToggle.classList.add('playing');
+        playingIcon.style.display = 'block';
+        mutedIcon.style.display = 'none';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Try to autoplay when browse screen is shown
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target.classList.contains('active') &&
+            mutation.target.id === 'browse-screen' &&
+            !isPlaying) {
+          // Small delay to help with autoplay
+          setTimeout(() => {
+            musicToggle.click();
+          }, 500);
+          observer.disconnect();
+        }
+      });
+    });
+
+    const browseScreen = document.getElementById('browse-screen');
+    if (browseScreen) {
+      observer.observe(browseScreen, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+});
