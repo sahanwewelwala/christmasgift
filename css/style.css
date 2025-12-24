@@ -606,8 +606,8 @@ body::-webkit-scrollbar-thumb:hover {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  overflow-y: hidden;
-  padding: 20px 0;
+  overflow-y: visible;
+  padding: 20px 0 120px 0;
   scroll-behavior: smooth;
 }
 
