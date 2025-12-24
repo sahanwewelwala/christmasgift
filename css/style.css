@@ -552,9 +552,9 @@ body.browse-active {
   display: flex;
   gap: 10px;
 
-  /* headroom for hover */
-  padding: 110px 80px 0;     /* top = hover space, bottom = 0 to avoid gaps */
-  margin: -110px -80px 0;    /* cancels the headroom so rows stay tight */
+  /* headroom for hover - added bottom padding for hover card space */
+  padding: 110px 80px 200px;     /* top = hover space, bottom = space for expanded card */
+  margin: -110px -80px -200px;   /* cancels the headroom so rows stay tight */
 
   overflow-x: auto;
   overflow-y: hidden;        /* important: prevent clipping issues */
@@ -599,6 +599,7 @@ body.browse-active {
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
+  object-position: center; /* ✅ center the image properly */
 }
 
 /* Image container */
@@ -609,6 +610,23 @@ body.browse-active {
   overflow: hidden; /* keep image neat */
   position: relative;
 }
+
+/* ✅ Watched progress bar at bottom of poster */
+.poster-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: var(--netflix-red);
+  width: 0%; /* default: not watched */
+  z-index: 3;
+  transition: width 0.3s ease;
+}
+
+/* Example: add .watched-50 class for 50% progress, .watched-100 for fully watched */
+.poster.watched-50 .poster-progress-bar { width: 50%; }
+.poster.watched-75 .poster-progress-bar { width: 75%; }
+.poster.watched-100 .poster-progress-bar { width: 100%; }
 
 .poster:hover .poster-image-container {
   border-radius: 4px 4px 0 0;
@@ -625,7 +643,7 @@ body.browse-active {
   right: 0;
 
   background: var(--netflix-dark-gray);
-  padding: 24px; /* ✅ more padding for better spacing */
+  padding: 24px 24px 28px 24px; /* ✅ extra bottom padding */
   min-height: 160px; /* ✅ larger minimum height */
   opacity: 0;
   visibility: hidden;
@@ -635,6 +653,7 @@ body.browse-active {
   box-shadow: 0 12px 32px rgba(0,0,0,.9);
   z-index: 10000; /* ✅ above everything in the row */
   pointer-events: none; /* ✅ allow hover to work on cards below */
+  margin-bottom: 20px; /* ✅ prevent cutoff at bottom */
 }
 
 .poster:hover .poster-hover-card {
@@ -976,8 +995,8 @@ body.browse-active {
   .row-title { font-size: 4.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
-    padding: 80px 40px 0;
-    margin: -80px -40px 0;
+    padding: 80px 40px 150px;
+    margin: -80px -40px -150px;
     overflow-y: hidden;
     gap: 8px;
   }
@@ -1027,8 +1046,8 @@ body.browse-active {
   .row-title { font-size: 5.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
-    padding: 60px 30px 0;
-    margin: -60px -30px 0;
+    padding: 60px 30px 120px;
+    margin: -60px -30px -120px;
     overflow-y: hidden;
     gap: 6px;
   }
