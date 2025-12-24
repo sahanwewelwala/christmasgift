@@ -513,13 +513,13 @@ body.browse-active {
   z-index: 2;
 }
 
-/* Each row must allow hover to escape */
+/* NO spacing between rows */
 .content-row {
   position: relative;
   z-index: 1;
   overflow: visible;
   filter: none !important;
-  margin-bottom: 0; /* ✅ no spacing between sections */
+  margin-bottom: 0 !important;
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
 }
@@ -540,30 +540,26 @@ body.browse-active {
   .content-row:has(.poster:hover) { z-index: 999998; }
 }
 
-/* Row titles */
+/* Keep title tight */
 .row-title {
   font-size: 1.4vw;
   font-weight: 700;
-  margin-bottom: 8px; /* ✅ reduced padding */
-  padding-top: 0;
+  margin: 0 0 8px 0;
 }
 
-/* Posters row */
+/* ✅ Scroll row with hover headroom but NO section gap */
 .row-posters {
   display: flex;
   gap: 10px;
 
-  /* ✅ minimal padding for tight spacing */
-  padding: 0 80px;
+  /* headroom for hover */
+  padding: 110px 80px 0;     /* top = hover space, bottom = 0 to avoid gaps */
+  margin: -110px -80px 0;    /* cancels the headroom so rows stay tight */
 
-  margin: 0 -80px;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;        /* important: prevent clipping issues */
   position: relative;
   z-index: 1;
-
-  /* ✅ keep hover card visible outside */
-  contain: none;
 }
 
 /* Hide scrollbar but allow vertical overflow for hover cards */
@@ -586,9 +582,9 @@ body.browse-active {
   transform-origin: center center;
 }
 
-/* ✅ Instant z-index lift (no delay) - goes over everything */
+/* optional: reduce the hover lift a bit since headroom is 110px */
 .poster:hover {
-  transform: scale(1.5) translateY(-60px); /* ✅ larger scale and more vertical lift */
+  transform: scale(1.5) translateY(-55px);
   z-index: 999999;
 }
 
@@ -976,12 +972,13 @@ body.browse-active {
   .hero-mute-btn svg { width: 20px; height: 20px; }
 
   .content-sections { padding: 0 20px 30px; }
-  .content-row { margin-bottom: 0; }
-  .row-title { font-size: 4.5vw; margin-bottom: 6px; }
+  .content-row { margin-bottom: 0 !important; }
+  .row-title { font-size: 4.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
-    padding: 0 40px;
-    margin: 0 -40px;
+    padding: 80px 40px 0;
+    margin: -80px -40px 0;
+    overflow-y: hidden;
     gap: 8px;
   }
 
@@ -1026,12 +1023,13 @@ body.browse-active {
   .hero-mute-btn svg { width: 18px; height: 18px; }
 
   .content-sections { padding: 0 15px 30px; }
-  .content-row { margin-bottom: 0; }
-  .row-title { font-size: 5.5vw; margin-bottom: 6px; }
+  .content-row { margin-bottom: 0 !important; }
+  .row-title { font-size: 5.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
-    padding: 0 30px;
-    margin: 0 -30px;
+    padding: 60px 30px 0;
+    margin: -60px -30px 0;
+    overflow-y: hidden;
     gap: 6px;
   }
 
