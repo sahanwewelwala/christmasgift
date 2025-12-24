@@ -279,9 +279,10 @@ body.browse-active {
 .nav-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; /* ✅ logo stays on left */
   max-width: 1920px;
   margin: 0 auto;
+  gap: 0;
 }
 
 .nav-links {
@@ -308,6 +309,7 @@ body.browse-active {
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-left: auto; /* ✅ push profile to the right */
 }
 
 .nav-avatar {
@@ -505,7 +507,7 @@ body.browse-active {
 /* ============================= */
 
 .content-sections {
-  padding: 24px 50px 40px; /* ✅ pull rows up closer to hero */
+  padding: 0 50px 40px; /* ✅ no top padding for tighter spacing */
   position: relative;
   overflow: visible;
   z-index: 2;
@@ -517,7 +519,7 @@ body.browse-active {
   z-index: 1;
   overflow: visible;
   filter: none !important;
-  margin-bottom: 34px; /* ✅ normal spacing */
+  margin-bottom: 0; /* ✅ no spacing between sections */
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
 }
@@ -535,7 +537,7 @@ body.browse-active {
 
 /* ✅ IMPORTANT: when a poster is hovered, lift the whole ROW above others */
 @supports selector(.content-row:has(.poster:hover)) {
-  .content-row:has(.poster:hover) { z-index: 5000; }
+  .content-row:has(.poster:hover) { z-index: 999998; }
 }
 
 /* Row titles */
@@ -550,8 +552,8 @@ body.browse-active {
   display: flex;
   gap: 10px;
 
-  /* ✅ reduced extra bottom padding (was 280px) */
-  padding: 16px 80px 120px;
+  /* ✅ minimal bottom padding for tight spacing */
+  padding: 16px 80px 0;
 
   margin: 0 -80px;
   overflow-x: auto;
@@ -582,10 +584,10 @@ body.browse-active {
   transform-origin: center center;
 }
 
-/* ✅ Instant z-index lift (no delay) */
+/* ✅ Instant z-index lift (no delay) - goes over everything */
 .poster:hover {
   transform: scale(1.35) translateY(-34px);
-  z-index: 9999;
+  z-index: 999999;
 }
 
 /* Make sure the hover card can render above */
@@ -955,12 +957,12 @@ body.browse-active {
   }
   .hero-mute-btn svg { width: 20px; height: 20px; }
 
-  .content-sections { padding: 16px 20px 30px; }
-  .content-row { margin-bottom: 22px; }
+  .content-sections { padding: 0 20px 30px; }
+  .content-row { margin-bottom: 0; }
   .row-title { font-size: 4.5vw; margin-bottom: 10px; }
 
   .row-posters {
-    padding: 12px 40px 60px 40px;
+    padding: 12px 40px 0;
     margin: 0 -40px;
     gap: 8px;
   }
@@ -1005,12 +1007,12 @@ body.browse-active {
   }
   .hero-mute-btn svg { width: 18px; height: 18px; }
 
-  .content-sections { padding: 14px 15px 30px; }
-  .content-row { margin-bottom: 18px; }
+  .content-sections { padding: 0 15px 30px; }
+  .content-row { margin-bottom: 0; }
   .row-title { font-size: 5.5vw; margin-bottom: 8px; }
 
   .row-posters {
-    padding: 10px 30px 50px 30px;
+    padding: 10px 30px 0;
     margin: 0 -30px;
     gap: 6px;
   }
