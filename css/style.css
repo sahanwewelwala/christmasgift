@@ -562,9 +562,10 @@ body {
 }
 
 .content-row {
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   overflow: visible;
   position: relative;
+  z-index: 1;
 }
 
 .row-title {
@@ -615,7 +616,7 @@ body {
 
 .poster:hover {
   transform: scale(1.5) translateY(-40px);
-  z-index: 100;
+  z-index: 1000;
   transition-delay: 0.5s;
 }
 
