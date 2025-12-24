@@ -581,7 +581,7 @@ body {
 .row-posters {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: visible;
   overflow-y: visible;
   padding: 20px 80px 30px 80px;
   margin: 0 -80px;
@@ -617,7 +617,7 @@ body {
 
 .poster:hover {
   transform: scale(1.5) translateY(-40px);
-  z-index: 1000;
+  z-index: 9999;
   transition-delay: 0.5s;
 }
 
