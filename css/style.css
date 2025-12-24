@@ -38,23 +38,14 @@ body.browse-active {
   overflow-x: hidden;
 }
 
-/* Custom Scrollbar for body */
+/* Hide scrollbar for body */
 body::-webkit-scrollbar {
-  width: 12px;
+  display: none;
 }
 
-body::-webkit-scrollbar-track {
-  background: var(--netflix-black);
-}
-
-body::-webkit-scrollbar-thumb {
-  background: var(--netflix-gray);
-  border-radius: 6px;
-  border: 2px solid var(--netflix-black);
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--netflix-light-gray);
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* Screen Management */
@@ -458,17 +449,17 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .hero-mute-btn.playing {
-  background-color: rgba(229, 9, 20, 0.2);
-  border-color: var(--netflix-red);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--netflix-white);
   animation: volumePulse 2s ease-in-out infinite;
 }
 
 @keyframes volumePulse {
   0%, 100% {
-    box-shadow: 0 0 0 rgba(229, 9, 20, 0.4);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -594,20 +585,12 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .row-posters::-webkit-scrollbar {
-  height: 8px;
+  display: none;
 }
 
-.row-posters::-webkit-scrollbar-track {
-  background: var(--netflix-dark-gray);
-}
-
-.row-posters::-webkit-scrollbar-thumb {
-  background: var(--netflix-gray);
-  border-radius: 4px;
-}
-
-.row-posters::-webkit-scrollbar-thumb:hover {
-  background: var(--netflix-light-gray);
+.row-posters {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .poster {
