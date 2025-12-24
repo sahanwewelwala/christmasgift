@@ -519,7 +519,7 @@ body.browse-active {
   z-index: 1;
   overflow: visible;
   filter: none !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 60px; /* ✅ add spacing between sections */
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
 }
@@ -582,9 +582,9 @@ body.browse-active {
   transform-origin: center center;
 }
 
-/* optional: reduce the hover lift a bit since headroom is 110px */
+/* ✅ Bigger scale, less upward movement for better visibility */
 .poster:hover {
-  transform: scale(1.5) translateY(-55px);
+  transform: scale(1.8) translateY(-25px);
   z-index: 999999;
 }
 
@@ -625,8 +625,8 @@ body.browse-active {
   right: 0;
 
   background: var(--netflix-dark-gray);
-  padding: 20px; /* ✅ increased padding for more height */
-  min-height: 120px; /* ✅ minimum height to ensure card expands */
+  padding: 24px; /* ✅ more padding for better spacing */
+  min-height: 160px; /* ✅ larger minimum height */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -647,13 +647,13 @@ body.browse-active {
 /* ACTION BUTTONS */
 .poster-actions {
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .poster-action-btn {
-  width: 32px;
-  height: 32px;
+  width: 38px; /* ✅ larger buttons */
+  height: 38px;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,.5);
   background: rgba(42,42,42,.6);
@@ -663,7 +663,7 @@ body.browse-active {
   cursor: pointer;
   transition: all .2s ease;
   color: var(--netflix-white);
-  font-size: 14px;
+  font-size: 16px; /* ✅ larger icon size */
 }
 
 .poster-action-btn:hover {
@@ -682,17 +682,17 @@ body.browse-active {
 /* Hover Metadata */
 .poster-hover-metadata {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 8px;
-  font-size: 12px;
+  margin-bottom: 12px;
+  font-size: 14px; /* ✅ larger font */
   flex-wrap: wrap;
 }
 
 .poster-maturity {
   border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 2px 6px;
-  font-size: 11px;
+  padding: 3px 8px;
+  font-size: 13px; /* ✅ larger font */
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -700,14 +700,14 @@ body.browse-active {
 .poster-duration,
 .poster-quality {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 11px;
+  font-size: 13px; /* ✅ larger font */
 }
 
 .poster-hover-tags {
-  font-size: 11px;
+  font-size: 13px; /* ✅ larger font */
   color: rgba(255, 255, 255, 0.7);
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .poster-hover-tags span::after {
@@ -972,7 +972,7 @@ body.browse-active {
   .hero-mute-btn svg { width: 20px; height: 20px; }
 
   .content-sections { padding: 0 20px 30px; }
-  .content-row { margin-bottom: 0 !important; }
+  .content-row { margin-bottom: 50px; }
   .row-title { font-size: 4.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
@@ -1023,7 +1023,7 @@ body.browse-active {
   .hero-mute-btn svg { width: 18px; height: 18px; }
 
   .content-sections { padding: 0 15px 30px; }
-  .content-row { margin-bottom: 0 !important; }
+  .content-row { margin-bottom: 40px; }
   .row-title { font-size: 5.5vw; margin: 0 0 6px 0; }
 
   .row-posters {
