@@ -319,6 +319,42 @@ body.browse-active {
   object-fit: cover;
 }
 
+.nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--netflix-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-icon-btn:hover {
+  color: var(--netflix-light-gray);
+}
+
+.notification-btn {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 8px;
+  min-width: 16px;
+  text-align: center;
+  line-height: 1;
+}
+
 .logout-btn {
   background: transparent;
   border: 1px solid var(--netflix-light-gray);
@@ -386,10 +422,28 @@ body.browse-active {
   letter-spacing: 2px;
 }
 
-.hero-mute-btn {
+.hero-controls {
   position: absolute;
   bottom: 40%;
   right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.hero-age-badge {
+  background-color: rgba(51, 51, 51, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: var(--netflix-white);
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.hero-mute-btn {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -401,7 +455,6 @@ body.browse-active {
   color: var(--netflix-white);
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 3;
 }
 
 .hero-mute-btn:hover {
@@ -575,7 +628,7 @@ body.browse-active {
   height: 140px;
   position: relative;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ larger radius for smoother look */
   overflow: visible !important;
   z-index: 1;
   transition: transform .25s cubic-bezier(.4,0,.2,1), z-index .1s linear;
@@ -598,7 +651,7 @@ body.browse-active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ match poster radius */
   object-position: center; /* ✅ center the image properly */
 }
 
@@ -606,9 +659,10 @@ body.browse-active {
 .poster-image-container {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ match poster radius */
   overflow: hidden; /* keep image neat */
   position: relative;
+  background-color: var(--netflix-gray); /* fallback while loading */
 }
 
 /* ✅ Watched progress bar at bottom of poster */
@@ -629,7 +683,7 @@ body.browse-active {
 .poster.watched-100 .poster-progress-bar { width: 100%; }
 
 .poster:hover .poster-image-container {
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0; /* ✅ larger radius for smoother look */
 }
 
 /* ============================= */
@@ -648,7 +702,7 @@ body.browse-active {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px; /* ✅ larger radius to match image */
   transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
   box-shadow: 0 12px 32px rgba(0,0,0,.9);
   z-index: 10000; /* ✅ above everything in the row */
@@ -697,6 +751,45 @@ body.browse-active {
 }
 
 .poster-action-btn.play-btn:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+/* ✅ Progress line with duration below title */
+.poster-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.poster-progress-line {
+  flex: 1;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--netflix-red);
+  width: 0%; /* default */
+  transition: width 0.3s ease;
+}
+
+/* Add classes like .progress-18-23 to show progress */
+.poster.progress-18-23 .poster-progress-fill { width: 78%; } /* 18 out of 23 */
+.poster.progress-10-20 .poster-progress-fill { width: 50%; } /* 10 out of 20 */
+.poster.progress-full .poster-progress-fill { width: 100%; }
+
+.poster-duration-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  font-weight: 500;
+}
 
 /* Hover Metadata */
 .poster-hover-metadata {
@@ -969,6 +1062,7 @@ body.browse-active {
   .nav-links { gap: 10px; margin-left: 15px; }
   .nav-link { font-size: 11px; }
   .logo-small { width: 80px; }
+  .nav-icon-btn svg { width: 20px; height: 20px; }
   .nav-avatar { width: 28px; height: 28px; }
   .logout-btn { padding: 5px 10px; font-size: 11px; }
 
@@ -982,11 +1076,20 @@ body.browse-active {
   .hero-buttons { gap: 10px; }
   .btn { padding: 10px 20px; font-size: 3.5vw; min-height: 44px; }
 
+  .hero-controls {
+    bottom: 30%;
+    right: 20px;
+    gap: 8px;
+  }
+
+  .hero-age-badge {
+    padding: 3px 8px;
+    font-size: 14px;
+  }
+
   .hero-mute-btn {
     width: 40px;
     height: 40px;
-    bottom: 30%;
-    right: 20px;
   }
   .hero-mute-btn svg { width: 20px; height: 20px; }
 
@@ -1023,6 +1126,8 @@ body.browse-active {
 
   .nav-links { display: none; }
   .logo-small { width: 70px; }
+  .nav-icon-btn svg { width: 18px; height: 18px; }
+  .notification-badge { font-size: 8px; padding: 1px 4px; }
   .nav-avatar { width: 24px; height: 24px; }
   .logout-btn { font-size: 10px; padding: 4px 8px; }
 
@@ -1033,11 +1138,20 @@ body.browse-active {
   .hero-buttons { flex-direction: column; width: 100%; gap: 8px; }
   .btn { font-size: 4vw; padding: 12px 24px; width: 100%; justify-content: center; }
 
+  .hero-controls {
+    bottom: 25%;
+    right: 15px;
+    gap: 6px;
+  }
+
+  .hero-age-badge {
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+
   .hero-mute-btn {
     width: 36px;
     height: 36px;
-    bottom: 25%;
-    right: 15px;
   }
   .hero-mute-btn svg { width: 18px; height: 18px; }
 
