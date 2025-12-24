@@ -726,8 +726,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isPlaying) {
         christmasMusic.pause();
         heroMuteBtn.classList.remove('playing');
-        volumeOnIcon.style.display = 'block';
-        volumeOffIcon.style.display = 'none';
+        volumeOnIcon.style.display = 'none';
+        volumeOffIcon.style.display = 'block';
       } else {
         christmasMusic.play().catch(err => {
           console.log('Could not play music. Error:', err.message);
@@ -738,8 +738,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 1000);
         });
         heroMuteBtn.classList.add('playing');
-        volumeOnIcon.style.display = 'none';
-        volumeOffIcon.style.display = 'block';
+        volumeOnIcon.style.display = 'block';
+        volumeOffIcon.style.display = 'none';
       }
       isPlaying = !isPlaying;
     });

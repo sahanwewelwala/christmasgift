@@ -15,11 +15,16 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Netflix Sans', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;
   background-color: var(--netflix-black);
   color: var(--netflix-white);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -583,8 +588,9 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 10px;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 20px 0 120px 0;
+  padding: 20px 80px 120px 80px;
   scroll-behavior: smooth;
+  margin: 0 -80px;
 }
 
 .row-posters::-webkit-scrollbar {
