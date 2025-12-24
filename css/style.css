@@ -374,7 +374,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
   height: 80vh;
   background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
-  url("/img/mainimage.png")
+  url("../img/mainimage.png")
   center/cover;
   display: flex;
   align-items: center;
@@ -1366,7 +1366,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
   height: 400px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--netflix-dark-gray)),
-  url("/img/infoimage.png") center/cover;
+  url("../img/infoimage.png") center/cover;
   display: flex;
   align-items: flex-end;
   padding: 40px;
