@@ -562,9 +562,10 @@ body {
 }
 
 .content-row {
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   overflow: visible;
   position: relative;
+  z-index: 1;
 }
 
 .row-title {
@@ -615,7 +616,7 @@ body {
 
 .poster:hover {
   transform: scale(1.5) translateY(-40px);
-  z-index: 100;
+  z-index: 1000;
   transition-delay: 0.5s;
 }
 
@@ -1104,57 +1105,216 @@ body {
   }
 
   .nav-links {
-    gap: 15px;
-    margin-left: 20px;
+    gap: 10px;
+    margin-left: 15px;
   }
 
   .nav-link {
-    font-size: 12px;
+    font-size: 11px;
+  }
+
+  .logo-small {
+    width: 80px;
+  }
+
+  .nav-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logout-btn {
+    padding: 5px 10px;
+    font-size: 11px;
   }
 
   .hero-section {
-    height: 60vh;
+    height: 70vh;
     padding: 0 20px;
+    margin-bottom: -80px;
+  }
+
+  .hero-content {
+    margin-top: 60px;
   }
 
   .hero-title {
     font-size: 7vw;
+    margin-bottom: 15px;
   }
 
   .hero-description {
     font-size: 3.5vw;
+    margin-bottom: 20px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
   }
 
   .btn {
-    padding: 8px 20px;
-    font-size: 3vw;
+    padding: 10px 20px;
+    font-size: 3.5vw;
+    min-height: 44px; /* Touch-friendly size */
+  }
+
+  .hero-mute-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 30%;
+    right: 20px;
+  }
+
+  .hero-mute-btn svg {
+    width: 20px;
+    height: 20px;
   }
 
   .content-sections {
-    padding: 0 20px 50px;
+    padding: 0 20px 30px;
+  }
+
+  .content-row {
+    margin-bottom: 30px;
   }
 
   .row-title {
-    font-size: 4vw;
+    font-size: 4.5vw;
+    margin-bottom: 10px;
+  }
+
+  .row-posters {
+    padding: 15px 40px 40px 40px;
+    margin: 0 -40px;
+    gap: 8px;
   }
 
   .poster {
-    min-width: 150px;
-    height: 85px;
+    min-width: 180px;
+    height: 100px;
   }
 
+  /* Disable hover scaling on mobile, enable tap */
+  .poster:hover {
+    transform: none;
+    z-index: 1;
+  }
+
+  .poster:active {
+    transform: scale(0.95);
+  }
+
+  /* Show simplified info on mobile instead of hover card */
+  .poster-hover-card {
+    display: none;
+  }
+
+  .poster-overlay {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .poster-title {
+    font-size: 12px;
+  }
+
+  .poster-metadata {
+    font-size: 10px;
+  }
+
+  .poster-match {
+    font-size: 10px;
+  }
+
+  .poster-year,
+  .poster-duration {
+    font-size: 9px;
+  }
+
+  .poster-tags {
+    font-size: 9px;
+  }
+
+  /* Touch-friendly PIN inputs */
   .pin-input {
-    width: 50px;
-    height: 70px;
-    font-size: 28px;
+    width: 55px;
+    height: 75px;
+    font-size: 30px;
+    min-height: 44px; /* Touch-friendly */
   }
 
   .pin-input-container {
-    gap: 10px;
+    gap: 12px;
   }
 
   .pin-profile-name {
     font-size: 24px;
+  }
+
+  .pin-back-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+
+  /* Modal adjustments for mobile */
+  .modal-content {
+    width: 95vw;
+    max-width: none;
+    margin: 20px;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .photo-modal-content {
+    width: 95vw;
+    padding: 20px;
+  }
+
+  .photo-hero-img {
+    height: 200px;
+  }
+
+  .photo-details {
+    padding: 15px;
+  }
+
+  .photo-title {
+    font-size: 6vw;
+  }
+
+  .photo-meta {
+    font-size: 3vw;
+    gap: 8px;
+  }
+
+  .photo-full-desc {
+    font-size: 3.5vw;
+    line-height: 1.5;
+  }
+
+  /* Info modal mobile */
+  .info-content {
+    width: 95vw;
+    padding: 20px;
+  }
+
+  .info-title {
+    font-size: 7vw;
+  }
+
+  .info-description {
+    font-size: 3.5vw;
+  }
+
+  /* Close buttons touch-friendly */
+  .close-modal,
+  .photo-close,
+  .info-close {
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -1168,6 +1328,11 @@ body {
     height: 80px;
   }
 
+  .profile-name {
+    font-size: 5vw;
+  }
+
+  /* Hide nav links on very small screens */
   .nav-links {
     display: none;
   }
@@ -1176,32 +1341,198 @@ body {
     width: 70px;
   }
 
+  .nav-avatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logout-btn {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .hero-section {
+    height: 60vh;
+    padding: 0 15px;
+    margin-bottom: -60px;
+  }
+
+  .hero-content {
+    margin-top: 40px;
+  }
+
   .hero-title {
     font-size: 9vw;
+    margin-bottom: 10px;
   }
 
   .hero-description {
     font-size: 4vw;
+    margin-bottom: 15px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
   }
 
   .btn {
     font-size: 4vw;
-    padding: 6px 16px;
+    padding: 12px 24px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-mute-btn {
+    width: 36px;
+    height: 36px;
+    bottom: 25%;
+    right: 15px;
+  }
+
+  .hero-mute-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .content-sections {
+    padding: 0 15px 30px;
+  }
+
+  .content-row {
+    margin-bottom: 25px;
   }
 
   .row-title {
-    font-size: 5vw;
+    font-size: 5.5vw;
+    margin-bottom: 8px;
+  }
+
+  .row-posters {
+    padding: 10px 30px 35px 30px;
+    margin: 0 -30px;
+    gap: 6px;
   }
 
   .poster {
-    min-width: 120px;
-    height: 68px;
+    min-width: 140px;
+    height: 80px;
   }
 
+  .poster-title {
+    font-size: 11px;
+  }
+
+  .poster-metadata {
+    font-size: 9px;
+  }
+
+  .poster-match {
+    font-size: 9px;
+  }
+
+  .poster-year,
+  .poster-duration {
+    font-size: 8px;
+  }
+
+  .poster-tags {
+    font-size: 8px;
+  }
+
+  .poster-badge {
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  /* PIN screen adjustments */
   .pin-input {
-    width: 45px;
-    height: 60px;
-    font-size: 24px;
+    width: 50px;
+    height: 65px;
+    font-size: 26px;
+  }
+
+  .pin-input-container {
+    gap: 10px;
+  }
+
+  .pin-profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pin-profile-name {
+    font-size: 22px;
+  }
+
+  .pin-back-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  /* Modals for small screens */
+  .modal-content {
+    width: 98vw;
+    margin: 10px;
+    max-height: 90vh;
+  }
+
+  .photo-modal-content {
+    width: 98vw;
+    padding: 15px;
+  }
+
+  .photo-hero-img {
+    height: 180px;
+  }
+
+  .photo-details {
+    padding: 12px;
+  }
+
+  .photo-title {
+    font-size: 7vw;
+    margin-bottom: 10px;
+  }
+
+  .photo-meta {
+    font-size: 3.5vw;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .photo-full-desc {
+    font-size: 4vw;
+    line-height: 1.6;
+  }
+
+  /* Info modal */
+  .info-content {
+    width: 98vw;
+    padding: 15px;
+  }
+
+  .info-title {
+    font-size: 8vw;
+  }
+
+  .info-description {
+    font-size: 4vw;
+  }
+
+  /* Proposal modal */
+  .proposal-content {
+    width: 95vw;
+    height: 85vh;
+  }
+
+  .proposal-message h2 {
+    font-size: 7vw;
+  }
+
+  .proposal-message p {
+    font-size: 4vw;
   }
 }
 
