@@ -298,6 +298,47 @@ body::-webkit-scrollbar-thumb:hover {
   border-color: var(--netflix-white);
 }
 
+/* Christmas Music Toggle */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 50px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--netflix-white);
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.music-toggle:hover {
+  background-color: rgba(229, 9, 20, 0.8);
+  border-color: var(--netflix-red);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+}
+
+.music-toggle.playing {
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(229, 9, 20, 0.4);
+  }
+}
+
 /* Navigation Bar */
 .navbar {
   position: fixed;

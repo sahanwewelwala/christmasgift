@@ -607,3 +607,54 @@ document.head.appendChild(style);
 console.log('%cNetflix-Style Website', 'color: #E50914; font-size: 24px; font-weight: bold;');
 console.log('%cMade with d for Chamudi', 'color: #fff; font-size: 16px;');
 console.log('\n=� Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
+
+// Christmas Music Control
+document.addEventListener('DOMContentLoaded', () => {
+  const musicToggle = document.getElementById('music-toggle');
+  const christmasMusic = document.getElementById('christmas-music');
+  const playingIcon = document.querySelector('.music-playing');
+  const mutedIcon = document.querySelector('.music-muted');
+  let isPlaying = false;
+
+  if (musicToggle && christmasMusic) {
+    // Set initial volume
+    christmasMusic.volume = 0.3;
+
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        christmasMusic.pause();
+        musicToggle.classList.remove('playing');
+        playingIcon.style.display = 'none';
+        mutedIcon.style.display = 'block';
+      } else {
+        christmasMusic.play().catch(err => {
+          console.log('Music autoplay prevented by browser:', err);
+        });
+        musicToggle.classList.add('playing');
+        playingIcon.style.display = 'block';
+        mutedIcon.style.display = 'none';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Try to autoplay when browse screen is shown
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target.classList.contains('active') &&
+            mutation.target.id === 'browse-screen' &&
+            !isPlaying) {
+          // Small delay to help with autoplay
+          setTimeout(() => {
+            musicToggle.click();
+          }, 500);
+          observer.disconnect();
+        }
+      });
+    });
+
+    const browseScreen = document.getElementById('browse-screen');
+    if (browseScreen) {
+      observer.observe(browseScreen, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+});
