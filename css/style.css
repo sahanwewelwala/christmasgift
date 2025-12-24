@@ -588,7 +588,7 @@ body.browse-active {
 
 /* ✅ Instant z-index lift (no delay) - goes over everything */
 .poster:hover {
-  transform: scale(1.35) translateY(-34px);
+  transform: scale(1.5) translateY(-60px); /* ✅ larger scale and more vertical lift */
   z-index: 999999;
 }
 
@@ -629,7 +629,8 @@ body.browse-active {
   right: 0;
 
   background: var(--netflix-dark-gray);
-  padding: 16px;
+  padding: 20px; /* ✅ increased padding for more height */
+  min-height: 120px; /* ✅ minimum height to ensure card expands */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -637,12 +638,14 @@ body.browse-active {
   transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
   box-shadow: 0 12px 32px rgba(0,0,0,.9);
   z-index: 10000; /* ✅ above everything in the row */
+  pointer-events: none; /* ✅ allow hover to work on cards below */
 }
 
 .poster:hover .poster-hover-card {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto; /* ✅ re-enable pointer events on hover */
 }
 
 /* ACTION BUTTONS */
@@ -815,10 +818,16 @@ body.browse-active {
 /* ============================= */
 
 #loading-screen {
+  position: fixed; /* ✅ fixed positioning to stay centered */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* ✅ full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--netflix-black);
+  z-index: 10000; /* ✅ above most content */
 }
 
 #loading-screen.fade-out { animation: fadeOut 0.5s ease-out forwards; }
@@ -828,7 +837,14 @@ body.browse-active {
   100% { opacity: 0; }
 }
 
-.loading-container { text-align: center; position: relative; }
+.loading-container {
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .logo-loading {
   width: 200px;
