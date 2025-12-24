@@ -501,6 +501,14 @@ function createPosterElement(photo) {
   img.alt = photo.title;
   img.loading = 'lazy';
 
+  // Add maturity badge if first few photos
+  if (photo.id <= 3) {
+    const badge = document.createElement('div');
+    badge.className = 'poster-badge';
+    badge.textContent = 'NEW';
+    poster.appendChild(badge);
+  }
+
   const overlay = document.createElement('div');
   overlay.className = 'poster-overlay';
 
@@ -508,7 +516,36 @@ function createPosterElement(photo) {
   title.className = 'poster-title';
   title.textContent = photo.title;
 
+  // Add metadata
+  const metadata = document.createElement('div');
+  metadata.className = 'poster-metadata';
+
+  const match = document.createElement('span');
+  match.className = 'poster-match';
+  match.textContent = photo.rating || '98% Match';
+
+  const year = document.createElement('span');
+  year.className = 'poster-year';
+  year.textContent = '2025';
+
+  const duration = document.createElement('span');
+  duration.className = 'poster-duration';
+  duration.textContent = photo.id <= 8 ? '1 Memory' : photo.id <= 13 ? '1 Place' : '1 Adventure';
+
+  metadata.appendChild(match);
+  metadata.appendChild(year);
+  metadata.appendChild(duration);
+
+  // Add genre tags
+  const tags = document.createElement('div');
+  tags.className = 'poster-tags';
+  const tagText = photo.tags ? photo.tags.split('•')[0].trim() : 'Romantic';
+  tags.textContent = tagText;
+
   overlay.appendChild(title);
+  overlay.appendChild(metadata);
+  overlay.appendChild(tags);
+
   poster.appendChild(img);
   poster.appendChild(overlay);
 

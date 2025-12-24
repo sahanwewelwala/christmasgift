@@ -402,6 +402,54 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
+.hero-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.netflix-n-badge {
+  width: 40px;
+  height: 20px;
+  fill: var(--netflix-red);
+}
+
+.maturity-badge {
+  background-color: rgba(51, 51, 51, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: var(--netflix-white);
+  padding: 2px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  letter-spacing: 2px;
+}
+
+.hero-mute-btn {
+  position: absolute;
+  bottom: 40%;
+  right: 50px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--netflix-white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.hero-mute-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--netflix-white);
+  transform: scale(1.1);
+}
+
 .hero-title {
   font-size: 4vw;
   font-weight: 700;
@@ -640,8 +688,63 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 15px;
   font-weight: 700;
   color: var(--netflix-white);
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Poster Badge (NEW, etc) */
+.poster-badge {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 0 2px 2px 0;
+  z-index: 2;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+/* Poster Metadata */
+.poster-metadata {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.poster-match {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.poster-year,
+.poster-duration {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+}
+
+.poster-year::before {
+  content: '• ';
+  margin-right: 4px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.poster-duration::before {
+  content: '• ';
+  margin-right: 4px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Poster Tags */
+.poster-tags {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
 }
 
 /* Loading Screen */
