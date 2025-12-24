@@ -202,13 +202,13 @@ const photos = [
 const profiles = {
   sahan: {
     name: 'Sahan',
-    pin: '1234',
+    pin: '0709',
     avatar: 'img/sahan-avatar.png',
     fallbackAvatar: 'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg'
   },
   chamudi: {
     name: 'Chamudi',
-    pin: '4321',
+    pin: '0709',
     avatar: 'img/chamudi-avatar.png',
     fallbackAvatar: 'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg'
   }
@@ -694,7 +694,7 @@ document.head.appendChild(style);
 // Console message
 console.log('%cNetflix-Style Website', 'color: #E50914; font-size: 24px; font-weight: bold;');
 console.log('%cMade with d for Chamudi', 'color: #fff; font-size: 16px;');
-console.log('\n=� Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
+console.log('\n=� Profile PINs:\n- Sahan: 0709\n- Chamudi: 0709');
 
 // Christmas Music Control (Hero Mute Button)
 document.addEventListener('DOMContentLoaded', () => {

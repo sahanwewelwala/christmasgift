@@ -374,14 +374,14 @@ body::-webkit-scrollbar-thumb:hover {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 90vh;
+  height: 100vh;
   background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
   url("../img/mainimage.png")
   center/cover;
   display: flex;
   align-items: center;
   padding: 0 50px;
-  margin-bottom: -100px;
+  margin-bottom: -120px;
 }
 
 .hero-content {
@@ -565,7 +565,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .content-row {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   overflow: visible;
   position: relative;
 }
