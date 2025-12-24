@@ -575,7 +575,7 @@ body.browse-active {
   height: 140px;
   position: relative;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ larger radius for smoother look */
   overflow: visible !important;
   z-index: 1;
   transition: transform .25s cubic-bezier(.4,0,.2,1), z-index .1s linear;
@@ -598,7 +598,7 @@ body.browse-active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ match poster radius */
   object-position: center; /* ✅ center the image properly */
 }
 
@@ -606,9 +606,10 @@ body.browse-active {
 .poster-image-container {
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 8px; /* ✅ match poster radius */
   overflow: hidden; /* keep image neat */
   position: relative;
+  background-color: var(--netflix-gray); /* fallback while loading */
 }
 
 /* ✅ Watched progress bar at bottom of poster */
@@ -629,7 +630,7 @@ body.browse-active {
 .poster.watched-100 .poster-progress-bar { width: 100%; }
 
 .poster:hover .poster-image-container {
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0; /* ✅ larger radius for smoother look */
 }
 
 /* ============================= */
@@ -648,7 +649,7 @@ body.browse-active {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px; /* ✅ larger radius to match image */
   transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
   box-shadow: 0 12px 32px rgba(0,0,0,.9);
   z-index: 10000; /* ✅ above everything in the row */
@@ -697,6 +698,45 @@ body.browse-active {
 }
 
 .poster-action-btn.play-btn:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+/* ✅ Progress line with duration below title */
+.poster-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.poster-progress-line {
+  flex: 1;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--netflix-red);
+  width: 0%; /* default */
+  transition: width 0.3s ease;
+}
+
+/* Add classes like .progress-18-23 to show progress */
+.poster.progress-18-23 .poster-progress-fill { width: 78%; } /* 18 out of 23 */
+.poster.progress-10-20 .poster-progress-fill { width: 50%; } /* 10 out of 20 */
+.poster.progress-full .poster-progress-fill { width: 100%; }
+
+.poster-duration-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  font-weight: 500;
+}
 
 /* Hover Metadata */
 .poster-hover-metadata {
