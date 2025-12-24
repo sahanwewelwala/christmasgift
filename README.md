@@ -33,7 +33,7 @@ A beautiful Netflix-style website created as a special gift! Browse through your
 const photos = [
   {
     id: 1,
-    src: 'img/memory1.jpg',  // Change this to your photo path
+    src: 'img/mainimage.png',  // Change this to your photo path
     title: 'Our First Date',  // Change this title
     description: 'The day we fell in love', // Change this description
     row: 1  // Which row to display (1-4)
@@ -107,7 +107,7 @@ Edit the hero section background in `css/style.css` (line 292):
 
 ```css
 background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
-            url('YOUR_IMAGE_URL_HERE') center/cover;
+            url('img/mainimage.png') center/cover;
 ```
 
 ## 🚀 How to Use

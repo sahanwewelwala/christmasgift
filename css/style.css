@@ -313,7 +313,8 @@ body.browse-active {
   position: relative;
   height: 80vh;
   background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
-              url('https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=1920&h=1080&fit=crop') center/cover;
+  url("/img/mainimage.png")
+  center/cover;
   display: flex;
   align-items: center;
   padding: 0 50px;
@@ -1017,7 +1018,7 @@ body.browse-active {
   position: relative;
   height: 400px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--netflix-dark-gray)),
-              url('https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=1920&h=1080&fit=crop') center/cover;
+  url("/img/infoimage.png") center/cover;
   display: flex;
   align-items: flex-end;
   padding: 40px;
