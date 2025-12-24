@@ -553,7 +553,7 @@ body.browse-active {
 /* ============================= */
 
 .content-sections {
-  padding: 15vh 50px 50px;
+  padding: 8vh 50px 50px;
   position: relative;
   overflow: visible;
 }
@@ -566,7 +566,7 @@ body.browse-active {
   filter: none !important;
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
-  margin-bottom: -260px;
+  margin-bottom: -220px;
 }
 
 /* Row animation delays */
@@ -596,7 +596,7 @@ body.browse-active {
 .row-title {
   font-size: 1.4vw;
   font-weight: 700;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 .row-posters {
@@ -636,7 +636,6 @@ body.browse-active {
 
 /* 🔥 FLOAT ABOVE EVERYTHING */
 .poster:hover {
-  position: absolute;
   transform: scale(1.5) translateY(-40px);
   z-index: 999999;
   transition-delay: .45s;
