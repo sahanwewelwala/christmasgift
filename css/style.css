@@ -8,29 +8,32 @@
   --netflix-white: #ffffff;
 }
 
-/* Reset and Base Styles */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
+html, body {
   overflow-x: hidden;
 }
 
 body {
-  font-family: 'Netflix Sans', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;
+  font-family: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--netflix-black);
   color: var(--netflix-white);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  margin: 0;
-  padding: 0;
   height: 100vh;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body.browse-active {
@@ -38,40 +41,29 @@ body.browse-active {
   overflow-x: hidden;
 }
 
-/* Hide scrollbar for body */
-body::-webkit-scrollbar {
-  display: none;
-}
+/* ============================= */
+/* SCREEN MANAGEMENT */
+/* ============================= */
 
-body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* Screen Management */
 .screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  inset: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow: hidden;
+  transition: opacity 0.3s ease;
 }
 
 .screen.active {
   opacity: 1;
   visibility: visible;
   position: relative;
+  overflow: visible;
 }
 
 #browse-screen.active {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: auto;
   min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Netflix Logo Styles */
@@ -205,7 +197,7 @@ body {
   text-align: center;
   padding: 20px;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 120px auto 0;
   opacity: 0;
   animation: pinFadeIn 0.6s ease forwards;
   animation-delay: 0.2s;
@@ -367,17 +359,21 @@ body {
   border-color: var(--netflix-white);
 }
 
-/* Hero Section */
+/* ============================= */
+/* HERO SECTION */
+/* ============================= */
+
 .hero-section {
   position: relative;
   height: 100vh;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
-  url("../img/mainimage.png")
-  center/cover;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.3), var(--netflix-black)),
+    url("../img/mainimage.png") center/cover;
+  padding: 0 50px;
   display: flex;
   align-items: center;
-  padding: 0 50px;
   margin-bottom: -120px;
+  z-index: 2;
 }
 
 .hero-content {
@@ -553,37 +549,65 @@ body {
   background: linear-gradient(to top, var(--netflix-black), transparent);
 }
 
-/* Content Sections */
+/* ============================= */
+/* CONTENT SECTIONS */
+/* ============================= */
+
 .content-sections {
   padding: 5vh 50px 50px;
   position: relative;
-  z-index: 2;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: visible;
 }
 
+/* Each row MUST NOT create a stacking context */
 .content-row {
-  margin-bottom: 0;
-  overflow-x: visible;
-  overflow-y: visible;
   position: relative;
-  z-index: 1;
+  z-index: auto;
+  overflow: visible;
+  filter: none !important;
+  opacity: 0;
+  animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
 }
+
+/* Row animation delays */
+.content-row:nth-child(1) { animation-delay: .15s; }
+.content-row:nth-child(2) { animation-delay: .3s; }
+.content-row:nth-child(3) { animation-delay: .45s; }
+.content-row:nth-child(4) { animation-delay: .6s; }
+
+/* 🔥 FIXED animation (NO filter at end) */
+@keyframes rowSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+  }
+}
+
+/* ============================= */
+/* ROW POSTERS */
+/* ============================= */
 
 .row-title {
   font-size: 1.4vw;
   font-weight: 700;
   margin-bottom: 12px;
-  color: var(--netflix-white);
-  letter-spacing: 0.02em;
 }
 
 .row-posters {
   display: flex;
   gap: 10px;
-  overflow: visible;
-  padding: 20px 80px 200px 80px;
+  padding: 20px 80px 40px;
   margin: 0 -80px;
+  overflow-x: auto;
+  overflow-y: visible;
+  position: relative;
+  z-index: auto;
 }
 
 .row-posters::-webkit-scrollbar {
@@ -591,19 +615,37 @@ body {
 }
 
 .row-posters {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
+/* ============================= */
+/* POSTER */
+/* ============================= */
 
 .poster {
   min-width: 250px;
   height: 140px;
-  border-radius: 4px;
-  overflow: visible;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: visible !important;
+  z-index: 1;
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* 🔥 FLOAT ABOVE EVERYTHING */
+.poster:hover {
+  transform: scale(1.5) translateY(-40px);
+  z-index: 999999;
+  transition-delay: .45s;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .poster-image-container {
@@ -614,14 +656,27 @@ body {
   position: relative;
 }
 
-.poster:hover {
-  transform: scale(1.5) translateY(-40px);
-  z-index: 9999;
-  transition-delay: 0.5s;
-}
-
 .poster:hover .poster-image-container {
   border-radius: 4px 4px 0 0;
+}
+
+/* ============================= */
+/* HOVER CARD */
+/* ============================= */
+
+.poster-hover-card {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--netflix-dark-gray);
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  border-radius: 0 0 4px 4px;
+  transition: all .3s ease;
+  box-shadow: 0 12px 32px rgba(0,0,0,.9);
 }
 
 .poster:hover .poster-hover-card {
@@ -630,32 +685,10 @@ body {
   transform: translateY(0);
 }
 
-.poster img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: block;
-}
+/* ============================= */
+/* ACTION BUTTONS */
+/* ============================= */
 
-/* Netflix Hover Card */
-.poster-hover-card {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: #181818;
-  border-radius: 0 0 4px 4px;
-  padding: 16px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-}
-
-/* Action Buttons Row */
 .poster-actions {
   display: flex;
   gap: 8px;
@@ -666,14 +699,14 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(42, 42, 42, 0.6);
-  color: var(--netflix-white);
+  border: 2px solid rgba(255,255,255,.5);
+  background: rgba(42,42,42,.6);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .2s ease;
+  color: var(--netflix-white);
   font-size: 14px;
 }
 
@@ -684,8 +717,7 @@ body {
 }
 
 .poster-action-btn.play-btn {
-  background-color: var(--netflix-white);
-  border-color: var(--netflix-white);
+  background: var(--netflix-white);
   color: var(--netflix-black);
 }
 
