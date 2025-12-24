@@ -101,7 +101,7 @@ body.browse-active {
 .profiles-container {
   text-align: center;
   padding: 20px;
-  padding-top: 120px;
+  padding-top: 180px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -636,6 +636,7 @@ body.browse-active {
 
 /* 🔥 FLOAT ABOVE EVERYTHING */
 .poster:hover {
+  position: absolute;
   transform: scale(1.5) translateY(-40px);
   z-index: 999999;
   transition-delay: .45s;
