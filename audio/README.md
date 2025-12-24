@@ -26,11 +26,22 @@
 - Button **pulses** when music is playing
 - Button shows **🎵 icon** when playing, crossed out when paused
 
+## Supported Audio Formats
+
+The player now supports multiple formats (tries in order):
+- **MP3** (`.mp3`) - Best browser compatibility
+- **M4A** (`.m4a`) - Apple/iTunes format
+- **OGG** (`.ogg`) - Open source format
+
+You can place the file in:
+- This `audio/` folder (recommended): `audio/christmas-music.mp3`
+- Root folder: `christmas-music.mp3`
+
 ## Important Notes
 
-- Only **MP3 format** is supported
 - Keep file size **under 10MB** for fast loading
 - Make sure you have rights to use the music
 - Some browsers may block autoplay - users will need to click the music button
+- Button appears **dimmed** if no music file is found
 
 Enjoy your Christmas atmosphere! 🎄✨
