@@ -555,15 +555,17 @@ body {
 
 /* Content Sections */
 .content-sections {
-  padding: 0 50px 50px;
+  padding: 5vh 50px 50px;
   position: relative;
   z-index: 2;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .content-row {
   margin-bottom: 0;
-  overflow: visible;
+  overflow-x: visible;
+  overflow-y: visible;
   position: relative;
   z-index: 1;
 }
