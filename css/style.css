@@ -197,7 +197,7 @@ body.browse-active {
   text-align: center;
   padding: 20px;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 80px auto 0;
   opacity: 0;
   animation: pinFadeIn 0.6s ease forwards;
   animation-delay: 0.2s;
@@ -563,7 +563,7 @@ body.browse-active {
 /* Each row MUST NOT create a stacking context */
 .content-row {
   position: relative;
-  z-index: 1;
+  z-index: auto;
   overflow: visible;
   filter: none !important;
   opacity: 0;
@@ -607,7 +607,7 @@ body.browse-active {
   margin: 0 -80px;
   overflow: visible !important;
   position: relative;
-  z-index: 1;
+  z-index: auto;
 }
 
 .row-posters::-webkit-scrollbar {
