@@ -1098,6 +1098,21 @@ body::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
   padding: 60px 40px;
   border-radius: 8px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.proposal-title-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.proposal-title-card::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.proposal-title-card::-webkit-scrollbar-thumb {
+  background: var(--netflix-red);
+  border-radius: 4px;
 }
 
 @keyframes titleCardFade {
@@ -1109,6 +1124,106 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.proposal-main-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--netflix-white);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  text-align: center;
+  animation: titleGlow 2s ease infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  }
+  50% {
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.9), 0 0 20px rgba(229, 9, 20, 0.3);
+  }
+}
+
+.proposal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.proposal-genre,
+.proposal-mood,
+.proposal-runtime,
+.proposal-language {
+  font-size: 14px;
+  color: var(--netflix-light-gray);
+  text-align: center;
+}
+
+.proposal-section {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.proposal-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--netflix-white);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.proposal-synopsis,
+.proposal-cast,
+.proposal-note,
+.proposal-tagline {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.proposal-synopsis {
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.proposal-tagline {
+  font-style: italic;
+  color: var(--netflix-light-gray);
+  padding-left: 20px;
+  border-left: 3px solid var(--netflix-red);
+  margin-bottom: 12px;
+}
+
+.proposal-status {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.proposal-badge {
+  display: inline-block;
+  background-color: var(--netflix-red);
+  color: var(--netflix-white);
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.proposal-streaming {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--netflix-white);
+  animation: heartbeat 1.5s ease-in-out infinite;
 }
 
 .proposal-title {
@@ -1160,6 +1275,29 @@ body::-webkit-scrollbar-thumb:hover {
 @media screen and (max-width: 768px) {
   .proposal-content {
     padding: 40px 20px;
+  }
+
+  .proposal-title-card {
+    padding: 40px 20px;
+  }
+
+  .proposal-main-title {
+    font-size: 28px;
+  }
+
+  .proposal-section-title {
+    font-size: 18px;
+  }
+
+  .proposal-synopsis,
+  .proposal-cast,
+  .proposal-note,
+  .proposal-tagline {
+    font-size: 14px;
+  }
+
+  .proposal-streaming {
+    font-size: 16px;
   }
 
   .proposal-title {
