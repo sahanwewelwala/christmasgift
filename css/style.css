@@ -1,3 +1,12 @@
+/* =========================================================
+   NETFLIX STYLE - FULL UPDATED CSS (FIXES)
+   ✅ Fix 1: Hover stacking/clipping issue across rows
+   ✅ Fix 2: Cafes row horizontal scroll (all rows scroll)
+   ✅ Fix 3: Login/Profile + PIN screen center alignment
+   ✅ Fix 4: Loading screen center alignment
+   ✅ Fix 5: Remove stacking-context traps (transform/filter)
+   ========================================================= */
+
 /* Netflix Style Variables */
 :root {
   --netflix-red: #E50914;
@@ -8,14 +17,17 @@
   --netflix-white: #ffffff;
 }
 
+/* ============================= */
 /* Reset and Base */
+/* ============================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
+html, body {
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -23,24 +35,18 @@ body {
   font-family: 'Netflix Sans', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;
   background-color: var(--netflix-black);
   color: var(--netflix-white);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* IMPORTANT:
+     We keep body locked by default because you switch screens.
+     browse-active enables scroll. */
+  overflow: hidden;
 }
 
-/* Hide scrollbar for body */
-body::-webkit-scrollbar {
-  display: none;
-}
-body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
+/* Hide scrollbar (body) */
+body::-webkit-scrollbar { display: none; }
+body { -ms-overflow-style: none; scrollbar-width: none; }
 
 body.browse-active {
   overflow-y: auto;
@@ -48,49 +54,57 @@ body.browse-active {
 }
 
 /* ============================= */
-/* SCREEN MANAGEMENT */
+/* SCREEN MANAGEMENT (CRITICAL FIX) */
 /* ============================= */
 
+/* IMPORTANT FIX:
+   - Do NOT use overflow:hidden on .screen (it clips hover cards)
+   - Keep screens fixed and centered
+*/
 .screen {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100vh;
+
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
+
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow: hidden;
+  overflow: visible; /* ✅ allow hover overflow */
+  background: var(--netflix-black);
 }
 
+/* Active screen becomes interactable */
 .screen.active {
   opacity: 1;
   visibility: visible;
-  position: relative;
-  overflow: visible; /* ✅ allow hover overflow */
-  animation: fadeIn 0.5s ease;
+  pointer-events: auto;
+  animation: fadeIn 0.35s ease;
 }
 
+/* Browse screen scroll container */
 #browse-screen.active {
-  overflow-y: auto;
+  overflow-y: auto;     /* ✅ browse can scroll */
   overflow-x: hidden;
-  height: auto;
-  min-height: 100vh;
 }
 
 /* ============================= */
 /* NETFLIX LOGO */
 /* ============================= */
-
 .netflix-logo {
   display: flex;
   justify-content: center;
   padding: 20px;
+
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+
   z-index: 10;
+  pointer-events: none; /* ✅ prevents layout/click issues */
 }
 
 .logo {
@@ -106,14 +120,13 @@ body.browse-active {
 }
 
 /* ============================= */
-/* PROFILE SCREEN */
+/* PROFILE SCREEN (CENTER FIX) */
 /* ============================= */
 
 #profile-screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   background-color: var(--netflix-black);
 }
 
@@ -121,7 +134,18 @@ body.browse-active {
   text-align: center;
   padding: 20px;
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
+
+  /* ✅ True center even with absolute logo on top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding-top: 90px;  /* room for logo */
+  padding-bottom: 40px;
 }
 
 .profiles-title {
@@ -152,12 +176,10 @@ body.browse-active {
 
 @keyframes profileFadeIn {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.profile-card:hover {
-  transform: scale(1.15) translateY(-5px);
-}
+.profile-card:hover { transform: scale(1.15) translateY(-5px); }
 
 .profile-avatar {
   width: 160px;
@@ -167,7 +189,7 @@ body.browse-active {
   border: 3px solid transparent;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
 .profile-card:hover .profile-avatar {
@@ -189,9 +211,7 @@ body.browse-active {
   transition: color 0.3s ease;
 }
 
-.profile-card:hover .profile-name {
-  color: var(--netflix-white);
-}
+.profile-card:hover .profile-name { color: var(--netflix-white); }
 
 /* ============================= */
 /* PIN SCREEN (CENTER FIX) */
@@ -201,23 +221,34 @@ body.browse-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* ✅ center */
   background-color: var(--netflix-black);
 }
 
 .pin-container {
   text-align: center;
   padding: 20px;
-  max-width: 400px;
-  margin: 0 auto; /* ✅ removed top offset */
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+
+  /* ✅ true center */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding-top: 90px; /* room for logo */
+  padding-bottom: 40px;
+
   opacity: 0;
   animation: pinFadeIn 0.6s ease forwards;
-  animation-delay: 0.2s;
+  animation-delay: 0.15s;
 }
 
 @keyframes pinFadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .pin-avatar {
@@ -237,7 +268,7 @@ body.browse-active {
 .pin-profile-name {
   font-size: 32px;
   font-weight: 400;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
   color: var(--netflix-white);
 }
 
@@ -245,7 +276,7 @@ body.browse-active {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .pin-input {
@@ -258,14 +289,14 @@ body.browse-active {
   border-radius: 8px;
   color: var(--netflix-white);
   outline: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .pin-input:focus {
   border-color: var(--netflix-white);
-  background-color: rgba(47, 47, 47, 0.8);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.5);
+  background-color: rgba(47,47,47,0.85);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08), 0 4px 16px rgba(0,0,0,0.5);
   transform: scale(1.05);
 }
 
@@ -273,7 +304,7 @@ body.browse-active {
   color: var(--netflix-red);
   font-size: 14px;
   min-height: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .pin-back-btn {
@@ -284,7 +315,7 @@ body.browse-active {
   font-size: 16px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .pin-back-btn:hover {
@@ -293,17 +324,72 @@ body.browse-active {
 }
 
 /* ============================= */
+/* LOADING SCREEN (CENTER FIX) */
+/* ============================= */
+
+#loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--netflix-black);
+}
+
+.loading-container {
+  /* ✅ perfect center */
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.logo-loading {
+  width: 200px;
+  height: auto;
+  fill: var(--netflix-red);
+  animation: netflixPulse 1.5s ease-in-out infinite;
+}
+
+.loading-spinner {
+  margin-top: 40px;
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(229, 9, 20, 0.2);
+  border-top: 4px solid var(--netflix-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+#loading-screen.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut { to { opacity: 0; } }
+
+@keyframes netflixPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================= */
 /* NAVBAR */
 /* ============================= */
 
 .navbar {
-  position: fixed;
+  position: sticky; /* ✅ better inside scrollable browse */
   top: 0;
   left: 0;
   right: 0;
   padding: 20px 50px;
   background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-  z-index: 100;
+  z-index: 5000; /* high, but below poster hover */
   transition: background-color 0.3s ease;
 }
 
@@ -360,7 +446,7 @@ body.browse-active {
   font-size: 12px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .logout-btn:hover {
@@ -375,13 +461,15 @@ body.browse-active {
 .hero-section {
   position: relative;
   height: 100vh;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
-  url("../img/mainimage.png") center/cover;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.3), var(--netflix-black)),
+    url("../img/mainimage.png") center/cover;
   display: flex;
   align-items: center;
   padding: 0 50px;
   margin-bottom: -120px;
-  z-index: 2;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -390,12 +478,12 @@ body.browse-active {
   margin-top: 100px;
   opacity: 0;
   animation: heroContentFadeIn 1s ease forwards;
-  animation-delay: 0.3s;
+  animation-delay: 0.2s;
 }
 
 @keyframes heroContentFadeIn {
   from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-badge {
@@ -453,13 +541,13 @@ body.browse-active {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .btn-play {
@@ -467,49 +555,94 @@ body.browse-active {
   color: var(--netflix-black);
 }
 
+.btn-play:hover { transform: scale(1.05); }
+
 .btn-info {
   background-color: rgba(109, 109, 110, 0.7);
   color: var(--netflix-white);
   backdrop-filter: blur(10px);
 }
 
+.btn-info:hover { transform: scale(1.05); }
+
+.hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, var(--netflix-black), transparent);
+}
+
+/* Music button */
+.hero-mute-btn {
+  position: absolute;
+  bottom: 40%;
+  right: 50px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--netflix-white);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 3;
+}
+
+.hero-mute-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--netflix-white);
+  transform: scale(1.1);
+}
+
 /* ============================= */
-/* CONTENT SECTIONS */
+/* CONTENT SECTIONS (STACKING FIX) */
 /* ============================= */
 
 .content-sections {
   padding: 5vh 50px 50px;
   position: relative;
-  z-index: 3;
-  overflow: visible; /* ✅ allow hover overflow */
+  z-index: 2;
+  overflow: visible; /* ✅ allow posters to float */
 }
 
-/* ✅ NO stacking-context bug: animation ends with filter:none */
+/* CRITICAL FIX:
+   - Do not leave transform/filter on the row after animation.
+   - Use "transform:none" at the end.
+*/
 .content-row {
   position: relative;
-  z-index: 1;
+  z-index: auto;
   overflow: visible;
-  filter: none !important;
   opacity: 0;
-  animation: rowSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  transform: translateZ(0); /* smooth + consistent */
+  animation: rowSlideIn 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  /* ✅ ensure row itself doesn't form a trap stacking layer */
+  transform: none;
+  filter: none;
+  perspective: none;
+  isolation: auto;
 }
 
-.content-row:nth-child(1) { animation-delay: 0.15s; }
-.content-row:nth-child(2) { animation-delay: 0.3s; }
-.content-row:nth-child(3) { animation-delay: 0.45s; }
-.content-row:nth-child(4) { animation-delay: 0.6s; }
+.content-row:nth-child(1) { animation-delay: 0.12s; }
+.content-row:nth-child(2) { animation-delay: 0.24s; }
+.content-row:nth-child(3) { animation-delay: 0.36s; }
+.content-row:nth-child(4) { animation-delay: 0.48s; }
 
 @keyframes rowSlideIn {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
     filter: blur(6px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
-    filter: none; /* ✅ critical */
+    transform: none; /* ✅ IMPORTANT */
+    filter: none;    /* ✅ IMPORTANT */
   }
 }
 
@@ -518,68 +651,74 @@ body.browse-active {
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--netflix-white);
-  letter-spacing: 0.02em;
 }
 
-/* ✅ Horizontal scrolling row (cafes etc.) */
+/* ✅ Horizontal scroll rows (Cafes + all rows) */
 .row-posters {
   display: flex;
   gap: 10px;
-  padding: 20px 80px 70px 80px; /* extra bottom room for hover card */
+
+  padding: 20px 80px 90px;
   margin: 0 -80px;
-  overflow-x: auto; /* ✅ horizontal scroll */
-  overflow-y: visible; /* ✅ allow hover expand */
+
+  overflow-x: auto;          /* ✅ horizontal scroll */
+  overflow-y: visible;       /* ✅ hover expand */
   -webkit-overflow-scrolling: touch;
+
   position: relative;
   z-index: 1;
 }
 
-/* Hide scrollbars but keep scroll working */
+/* Hide scrollbar but keep scroll */
 .row-posters::-webkit-scrollbar { display: none; }
 .row-posters { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ============================= */
-/* POSTER + HOVER CARD */
+/* POSTER + HOVER CARD (NO CLIP, NO STACKING BUG) */
 /* ============================= */
 
 .poster {
   min-width: 250px;
   height: 140px;
+  position: relative;
+
   border-radius: 4px;
   overflow: visible !important;
+
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
   z-index: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
+
+  /* ✅ keep poster not creating weird stacking unless necessary */
+  will-change: transform;
 }
 
+/* The image container */
 .poster-image-container {
   width: 100%;
   height: 100%;
   border-radius: 4px;
-  overflow: visible;
   position: relative;
+  overflow: hidden; /* only clip image corners */
 }
 
-/* ✅ hover floats above all rows */
+/* IMPORTANT:
+   Put the hover card ABOVE everything.
+   We lift poster + create the z-index at hover time only.
+*/
 .poster:hover {
   transform: scale(1.5) translateY(-40px);
-  z-index: 9999999 !important;
-  transition-delay: 0.35s;
-}
-
-.poster:hover .poster-image-container {
-  border-radius: 4px 4px 0 0;
+  z-index: 9999999;
 }
 
 .poster img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
   display: block;
+  border-radius: 4px;
 }
 
 /* Hover Card */
@@ -588,14 +727,20 @@ body.browse-active {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--netflix-dark-gray);
-  border-radius: 0 0 4px 4px;
+
+  background: var(--netflix-dark-gray);
   padding: 16px;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9);
+
+  border-radius: 0 0 4px 4px;
+  transition: all 0.25s ease;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.9);
+
+  /* ✅ ensure it renders on top */
+  z-index: 99999999;
 }
 
 .poster:hover .poster-hover-card {
@@ -615,31 +760,32 @@ body.browse-active {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(42, 42, 42, 0.6);
-  color: var(--netflix-white);
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(42,42,42,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
   transition: all 0.2s ease;
+  color: var(--netflix-white);
   font-size: 14px;
 }
 
 .poster-action-btn:hover {
   border-color: var(--netflix-white);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255,255,255,0.1);
   transform: scale(1.1);
 }
 
 .poster-action-btn.play-btn {
-  background-color: var(--netflix-white);
-  border-color: var(--netflix-white);
+  background: var(--netflix-white);
   color: var(--netflix-black);
+  border-color: var(--netflix-white);
 }
 
 .poster-action-btn.play-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255,255,255,0.85);
 }
 
 /* Hover Metadata */
@@ -653,22 +799,22 @@ body.browse-active {
 }
 
 .poster-maturity {
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255,255,255,0.4);
   padding: 2px 6px;
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255,255,255,0.9);
 }
 
 .poster-duration,
 .poster-quality {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255,255,255,0.7);
   font-size: 11px;
 }
 
 .poster-hover-tags {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255,255,255,0.7);
   display: flex;
   gap: 6px;
 }
@@ -676,82 +822,86 @@ body.browse-active {
 .poster-hover-tags span::after {
   content: ' •';
   margin-left: 6px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255,255,255,0.5);
 }
 
-.poster-hover-tags span:last-child::after {
-  content: '';
+.poster-hover-tags span:last-child::after { content: ''; }
+
+/* ============================= */
+/* MODALS (from your HTML) */
+/* ============================= */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000000;
+  background-color: rgba(0,0,0,0);
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(0px);
 }
 
-/* ============================= */
-/* LOADING SCREEN (CENTER FIX) */
-/* ============================= */
+.modal.active {
+  display: flex;
+  opacity: 1;
+  background-color: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+}
 
-#loading-screen {
+.photo-modal-content,
+.info-modal-content {
+  background-color: var(--netflix-dark-gray);
+  border-radius: 8px;
+  max-width: 850px;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalFadeIn 0.3s ease;
+  position: relative;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.photo-close,
+.info-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--netflix-white);
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.7);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* ✅ center */
-  background-color: var(--netflix-black);
 }
 
-.loading-container {
-  text-align: center;
-  position: relative;
-  width: 100%;
-  display: flex;                 /* ✅ center content */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.photo-close:hover,
+.info-close:hover {
+  background-color: rgba(229, 9, 20, 0.9);
 }
 
-.logo-loading {
-  width: 200px;
-  height: auto;
-  fill: var(--netflix-red);
-  animation: netflixPulse 1.5s ease-in-out infinite;
-}
-
-.loading-spinner {
-  margin-top: 40px;
-  width: 60px;
-  height: 60px;
-  border: 4px solid rgba(229, 9, 20, 0.2);
-  border-top: 4px solid var(--netflix-red);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-/* Loading Fade */
-#loading-screen.fade-out {
-  animation: fadeOut 0.5s ease-out forwards;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes netflixPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Screen Fade In */
+/* ============================= */
+/* Animations */
+/* ============================= */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 /* ============================= */
 /* MOBILE RESPONSIVE */
 /* ============================= */
-
 @media screen and (max-width: 768px) {
   .profiles-title {
     font-size: 6vw;
@@ -781,7 +931,7 @@ body.browse-active {
   .row-title { font-size: 4.5vw; }
 
   .row-posters {
-    padding: 15px 40px 60px 40px;
+    padding: 15px 40px 70px;
     margin: 0 -40px;
     gap: 8px;
   }
@@ -815,7 +965,7 @@ body.browse-active {
   .row-title { font-size: 5.5vw; }
 
   .row-posters {
-    padding: 10px 30px 55px 30px;
+    padding: 10px 30px 65px;
     margin: 0 -30px;
     gap: 6px;
   }
