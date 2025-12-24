@@ -197,7 +197,7 @@ body.browse-active {
   text-align: center;
   padding: 20px;
   max-width: 400px;
-  margin: 80px auto 0;
+  margin: 120px auto 0;
   opacity: 0;
   animation: pinFadeIn 0.6s ease forwards;
   animation-delay: 0.2s;
@@ -556,7 +556,6 @@ body.browse-active {
 .content-sections {
   padding: 5vh 50px 50px;
   position: relative;
-  z-index: 3;
   overflow: visible;
 }
 
@@ -605,7 +604,8 @@ body.browse-active {
   gap: 10px;
   padding: 20px 80px 40px;
   margin: 0 -80px;
-  overflow: visible !important;
+  overflow-x: auto;
+  overflow-y: visible;
   position: relative;
   z-index: auto;
 }
