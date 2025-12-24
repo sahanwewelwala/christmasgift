@@ -202,13 +202,13 @@ const photos = [
 const profiles = {
   sahan: {
     name: 'Sahan',
-    pin: '1234',
+    pin: '0709',
     avatar: 'img/sahan-avatar.png',
     fallbackAvatar: 'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg'
   },
   chamudi: {
     name: 'Chamudi',
-    pin: '4321',
+    pin: '0709',
     avatar: 'img/chamudi-avatar.png',
     fallbackAvatar: 'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg'
   }
@@ -694,33 +694,52 @@ document.head.appendChild(style);
 // Console message
 console.log('%cNetflix-Style Website', 'color: #E50914; font-size: 24px; font-weight: bold;');
 console.log('%cMade with d for Chamudi', 'color: #fff; font-size: 16px;');
-console.log('\n=� Profile PINs:\n- Sahan: 1234\n- Chamudi: 4321');
+console.log('\n=� Profile PINs:\n- Sahan: 0709\n- Chamudi: 0709');
 
-// Christmas Music Control
+// Christmas Music Control (Hero Mute Button)
 document.addEventListener('DOMContentLoaded', () => {
-  const musicToggle = document.getElementById('music-toggle');
+  const heroMuteBtn = document.getElementById('hero-mute-btn');
   const christmasMusic = document.getElementById('christmas-music');
-  const playingIcon = document.querySelector('.music-playing');
-  const mutedIcon = document.querySelector('.music-muted');
+  const volumeOnIcon = document.querySelector('.volume-on');
+  const volumeOffIcon = document.querySelector('.volume-off');
   let isPlaying = false;
 
-  if (musicToggle && christmasMusic) {
+  if (heroMuteBtn && christmasMusic) {
     // Set initial volume
     christmasMusic.volume = 0.3;
 
-    musicToggle.addEventListener('click', () => {
+    // Handle audio loading errors
+    christmasMusic.addEventListener('error', (e) => {
+      console.log('Christmas music file not found. Please add christmas-music.mp3 to the audio/ folder or root directory.');
+      heroMuteBtn.style.opacity = '0.5';
+      heroMuteBtn.style.cursor = 'not-allowed';
+    });
+
+    // Handle successful load
+    christmasMusic.addEventListener('loadeddata', () => {
+      console.log('Christmas music loaded successfully!');
+      heroMuteBtn.style.opacity = '1';
+      heroMuteBtn.style.cursor = 'pointer';
+    });
+
+    heroMuteBtn.addEventListener('click', () => {
       if (isPlaying) {
         christmasMusic.pause();
-        musicToggle.classList.remove('playing');
-        playingIcon.style.display = 'none';
-        mutedIcon.style.display = 'block';
+        heroMuteBtn.classList.remove('playing');
+        volumeOnIcon.style.display = 'block';
+        volumeOffIcon.style.display = 'none';
       } else {
         christmasMusic.play().catch(err => {
-          console.log('Music autoplay prevented by browser:', err);
+          console.log('Could not play music. Error:', err.message);
+          // Show visual feedback
+          heroMuteBtn.style.opacity = '0.5';
+          setTimeout(() => {
+            heroMuteBtn.style.opacity = '1';
+          }, 1000);
         });
-        musicToggle.classList.add('playing');
-        playingIcon.style.display = 'block';
-        mutedIcon.style.display = 'none';
+        heroMuteBtn.classList.add('playing');
+        volumeOnIcon.style.display = 'none';
+        volumeOffIcon.style.display = 'block';
       }
       isPlaying = !isPlaying;
     });
@@ -733,7 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
             !isPlaying) {
           // Small delay to help with autoplay
           setTimeout(() => {
-            musicToggle.click();
+            heroMuteBtn.click();
           }, 500);
           observer.disconnect();
         }
