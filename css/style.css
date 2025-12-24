@@ -101,6 +101,7 @@ body.browse-active {
 .profiles-container {
   text-align: center;
   padding: 20px;
+  padding-top: 120px;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -565,7 +566,7 @@ body.browse-active {
   filter: none !important;
   opacity: 0;
   animation: rowSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
-  margin-bottom: -240px;
+  margin-bottom: -260px;
 }
 
 /* Row animation delays */
@@ -595,7 +596,7 @@ body.browse-active {
 .row-title {
   font-size: 1.4vw;
   font-weight: 700;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 
 .row-posters {
