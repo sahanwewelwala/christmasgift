@@ -1209,6 +1209,165 @@ body.browse-active {
   }
 }
 
+/* Photo Detail Modal */
+.photo-modal-content {
+  position: relative;
+  background-color: var(--netflix-dark-gray);
+  border-radius: 8px;
+  max-width: 850px;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.photo-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.photo-modal-content::-webkit-scrollbar-track {
+  background: var(--netflix-black);
+}
+
+.photo-modal-content::-webkit-scrollbar-thumb {
+  background: var(--netflix-gray);
+  border-radius: 5px;
+}
+
+.photo-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--netflix-white);
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.photo-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.photo-hero {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+#photo-hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(to top, var(--netflix-dark-gray), transparent);
+}
+
+.photo-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+  width: 100%;
+}
+
+.photo-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+  color: var(--netflix-white);
+}
+
+.photo-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.photo-match {
+  color: #46d369;
+  font-weight: 700;
+}
+
+.photo-date {
+  color: var(--netflix-white);
+}
+
+.photo-tags {
+  color: var(--netflix-light-gray);
+  font-size: 13px;
+}
+
+.photo-body {
+  padding: 30px 40px 40px;
+}
+
+.photo-section {
+  margin-bottom: 20px;
+}
+
+.photo-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--netflix-white);
+}
+
+.photo-full-desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--netflix-white);
+}
+
+@media screen and (max-width: 768px) {
+  .photo-hero {
+    height: 350px;
+  }
+
+  .photo-title {
+    font-size: 28px;
+  }
+
+  .photo-meta {
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .photo-body {
+    padding: 20px;
+  }
+
+  .photo-section-title {
+    font-size: 18px;
+  }
+
+  .photo-full-desc {
+    font-size: 14px;
+  }
+}
+
 /* Loading Animation */
 @keyframes fadeIn {
   from {

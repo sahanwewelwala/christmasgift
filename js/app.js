@@ -6,6 +6,14 @@ const photos = [
   // Row 1: Cafes We Went
   {
     id: 1,
+    src: 'img/agnus.jpg',
+    fallbackSrc: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&h=600&fit=crop',
+    title: 'Agnus',
+    description: 'Delicious meals together',
+    fullDescription: 'An unforgettable dining experience where every bite was perfect. The ambiance, the food, and most importantly, the company made this evening truly special.',
+    date: 'Season 1 • Episode 3',
+    rating: '99% Match',
+    tags: 'Romantic • Delicious • Memorable',
     src: 'img/agnus.png',
     title: 'Agnus',
     description: '🍽️ Tonight at Agnus\n' +
@@ -27,6 +35,10 @@ const photos = [
     src: 'img/tavetti.png',
     title: 'Taavetti Beach Club',
     description: 'Beautiful beachside dining experience',
+    fullDescription: 'Sunset views, ocean breeze, and the best company. We watched the waves crash while sharing stories and dreams. This is where time stood still.',
+    date: 'Season 1 • Episode 5',
+    rating: '98% Match',
+    tags: 'Beachside • Romantic • Sunset Views',
     row: 1
   },
   {
@@ -34,6 +46,10 @@ const photos = [
     src: 'img/RiffHikkaduwa.png',
     title: 'Riff Hikkaduwa',
     description: 'Amazing food and atmosphere',
+    fullDescription: 'The place where we laughed until our stomachs hurt. Amazing cocktails, incredible food, and even better conversations. Every moment here felt like a celebration.',
+    date: 'Season 2 • Episode 1',
+    rating: '97% Match',
+    tags: 'Vibrant • Fun • Delicious',
     row: 1
   },
   {
@@ -41,6 +57,10 @@ const photos = [
     src: 'img/barista.png',
     title: 'Barisat Galle Fort',
     description: 'Historic fort dining',
+    fullDescription: 'Dining in history. The old fort walls held our whispers and laughter. Traditional flavors met modern romance in this beautiful setting.',
+    date: 'Season 2 • Episode 4',
+    rating: '96% Match',
+    tags: 'Historic • Charming • Cultural',
     row: 1
   },
   {
@@ -48,6 +68,10 @@ const photos = [
     src: 'img/capeweligama.png',
     title: 'Cape Weligama',
     description: 'Luxury dining with ocean views',
+    fullDescription: 'Pure luxury overlooking the endless ocean. We felt like royalty with every course. The view was breathtaking, but not as much as the person sitting across from me.',
+    date: 'Season 2 • Episode 7',
+    rating: '100% Match',
+    tags: 'Luxury • Ocean View • Elegant',
     row: 1
   },
   {
@@ -55,6 +79,10 @@ const photos = [
     src: 'img/cellestial.png',
     title: 'Celestial Galle Fort',
     description: 'Charming fort restaurant',
+    fullDescription: 'Under the stars in the historic fort. The name says it all - celestial. An evening that felt like it was written in the stars.',
+    date: 'Season 2 • Episode 9',
+    rating: '95% Match',
+    tags: 'Romantic • Starry • Historic',
     row: 1
   },
   {
@@ -62,6 +90,10 @@ const photos = [
     src: 'img/crytsalsand.png',
     title: 'Crystal Sand',
     description: 'Beachside relaxation',
+    fullDescription: 'Toes in the sand, drinks in hand, and hearts completely content. The perfect beach day turned into a perfect beach evening.',
+    date: 'Season 3 • Episode 2',
+    rating: '94% Match',
+    tags: 'Beachside • Relaxing • Carefree',
     row: 1
   },
   {
@@ -69,6 +101,10 @@ const photos = [
     src: 'img/raddissoncollection.png',
     title: 'Radisson Collection',
     description: 'Upscale dining experience',
+    fullDescription: 'Five-star service, world-class cuisine, and the best date ever. Every detail was perfect, just like every moment with you.',
+    date: 'Season 3 • Episode 5',
+    rating: '99% Match',
+    tags: 'Upscale • Sophisticated • Perfect',
     row: 1
   },
   // Row 2: Places We Went
@@ -77,6 +113,10 @@ const photos = [
     src: 'img/galle.png',
     title: 'Galle',
     description: 'Exploring new places',
+    fullDescription: 'Adventure called and we answered. Climbing to new heights together, both literally and metaphorically. The view from the top was incredible, but the journey with you was even better.',
+    date: 'Season 3 • Episode 8',
+    rating: '97% Match',
+    tags: 'Adventure • Scenic • Memorable',
     row: 2
   },
   {
@@ -84,6 +124,10 @@ const photos = [
     src: 'img/colombo.png',
     title: 'Colombo',
     description: 'Beautiful evening stroll',
+    fullDescription: 'Golden hour magic. Walking hand in hand as the sun painted the sky in our favorite colors. Time slowed down and everything felt perfect.',
+    date: 'Season 4 • Episode 2',
+    rating: '100% Match',
+    tags: 'Romantic • Peaceful • Golden',
     row: 2
   },
   {
@@ -91,6 +135,10 @@ const photos = [
     src: 'img/awarekaaley.png',
     title: 'Awareka aley',
     description: 'Discovering the city',
+    fullDescription: 'Getting lost in the city streets and finding ourselves in each moment. Every corner held a new surprise, every street a new memory.',
+    date: 'Season 4 • Episode 5',
+    rating: '96% Match',
+    tags: 'Urban • Exciting • Spontaneous',
     row: 2
   },
   // Row 3: Shopping Places We Went
@@ -99,6 +147,10 @@ const photos = [
     src: 'img/carnage.png',
     title: 'Carnage OGF',
     description: 'Finding treasures together',
+    fullDescription: 'Finding hidden gems in boutique stores. You have the best taste, and together we found pieces that tell our story.',
+    date: 'Season 5 • Episode 1',
+    rating: '95% Match',
+    tags: 'Fashionable • Fun • Quality Time',
     row: 3
   },
   {
@@ -106,6 +158,10 @@ const photos = [
     src: 'img/Onegalleface.png',
     title: 'Market Day',
     description: 'Browsing through shops',
+    fullDescription: 'The local market where we spent hours just exploring. From handmade crafts to delicious snacks, every stall was an adventure.',
+    date: 'Season 5 • Episode 3',
+    rating: '94% Match',
+    tags: 'Local • Cultural • Charming',
     row: 3
   },
 
@@ -115,6 +171,10 @@ const photos = [
     src: 'img/beachdate.png',
     title: 'Beach Date',
     description: 'Walking on the sand, watching the waves together',
+    fullDescription: 'Coming Soon: Barefoot walks on pristine beaches, building sandcastles, watching the sunset over the ocean, and making wishes on waves.',
+    date: 'Upcoming Episode',
+    rating: '100% Match (Predicted)',
+    tags: 'Romantic • Relaxing • Paradise',
     row: 4
   },
   {
@@ -122,6 +182,10 @@ const photos = [
     src: 'img/potterydate.png',
     title: 'Pottery Date',
     description: 'Creating something beautiful together',
+    fullDescription: 'Coming Soon: Getting our hands dirty while creating art together. Laughing at our wonky pots and making something uniquely ours.',
+    date: 'Upcoming Episode',
+    rating: '99% Match (Predicted)',
+    tags: 'Creative • Fun • Artsy',
     row: 4
   },
   {
@@ -129,6 +193,10 @@ const photos = [
     src: 'img/Travellingnight.png',
     title: 'Travelling at Night',
     description: 'Late night adventures under the stars',
+    fullDescription: 'Coming Soon: Late night drives with no destination, stargazing from hilltops, and deep conversations that last until sunrise.',
+    date: 'Upcoming Episode',
+    rating: '100% Match (Predicted)',
+    tags: 'Adventurous • Romantic • Dreamy',
     row: 4
   },
   {
@@ -136,6 +204,10 @@ const photos = [
     src: 'img/swimming.png',
     title: 'Swimming',
     description: 'Making a splash together',
+    fullDescription: 'Coming Soon: Pool days, ocean swims, and splashing around like kids. Making waves and memories together.',
+    date: 'Upcoming Episode',
+    rating: '98% Match (Predicted)',
+    tags: 'Refreshing • Playful • Summer',
     row: 4
   }
 ];
@@ -398,16 +470,16 @@ function initializeBrowseScreen() {
   });
 
   // Photo Modal functionality
-  const modal = document.getElementById('photo-modal');
-  const modalClose = document.querySelector('.modal-close');
+  const photoModal = document.getElementById('photo-modal');
+  const photoClose = document.getElementById('photo-close');
 
-  modalClose.addEventListener('click', () => {
-    modal.classList.remove('active');
+  photoClose.addEventListener('click', () => {
+    photoModal.classList.remove('active');
   });
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
+  photoModal.addEventListener('click', (e) => {
+    if (e.target === photoModal) {
+      photoModal.classList.remove('active');
     }
   });
 }
@@ -464,13 +536,19 @@ function createPosterElement(photo) {
 
 function openPhotoModal(photo) {
   const modal = document.getElementById('photo-modal');
-  const modalImg = document.getElementById('modal-img');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDescription = document.getElementById('modal-description');
+  const photoHeroImg = document.getElementById('photo-hero-img');
+  const photoTitle = document.getElementById('photo-title');
+  const photoRating = document.getElementById('photo-rating');
+  const photoDate = document.getElementById('photo-date');
+  const photoTags = document.getElementById('photo-tags');
+  const photoFullDesc = document.getElementById('photo-full-desc');
 
-  modalImg.src = photo.src;
-  modalTitle.textContent = photo.title;
-  modalDescription.textContent = photo.description;
+  photoHeroImg.src = photo.src || photo.fallbackSrc;
+  photoTitle.textContent = photo.title;
+  photoRating.textContent = photo.rating;
+  photoDate.textContent = photo.date;
+  photoTags.textContent = photo.tags;
+  photoFullDesc.textContent = photo.fullDescription;
 
   modal.classList.add('active');
 }
