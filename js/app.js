@@ -708,6 +708,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial volume
     christmasMusic.volume = 0.3;
 
+    // Handle audio loading errors
+    christmasMusic.addEventListener('error', (e) => {
+      console.log('Christmas music file not found. Please add christmas-music.mp3 to the audio/ folder or root directory.');
+      musicToggle.style.opacity = '0.5';
+      musicToggle.style.cursor = 'not-allowed';
+    });
+
+    // Handle successful load
+    christmasMusic.addEventListener('loadeddata', () => {
+      console.log('Christmas music loaded successfully!');
+      musicToggle.style.opacity = '1';
+      musicToggle.style.cursor = 'pointer';
+    });
+
     musicToggle.addEventListener('click', () => {
       if (isPlaying) {
         christmasMusic.pause();
@@ -716,7 +730,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mutedIcon.style.display = 'block';
       } else {
         christmasMusic.play().catch(err => {
-          console.log('Music autoplay prevented by browser:', err);
+          console.log('Could not play music. Error:', err.message);
+          // Show visual feedback
+          musicToggle.style.opacity = '0.5';
+          setTimeout(() => {
+            musicToggle.style.opacity = '1';
+          }, 1000);
         });
         musicToggle.classList.add('playing');
         playingIcon.style.display = 'block';
