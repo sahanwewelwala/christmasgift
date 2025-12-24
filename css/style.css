@@ -562,7 +562,7 @@ body {
 }
 
 .content-row {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   overflow: visible;
   position: relative;
   z-index: 1;
@@ -579,7 +579,7 @@ body {
 .row-posters {
   display: flex;
   gap: 10px;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: visible;
   padding: 20px 80px 30px 80px;
   margin: 0 -80px;
